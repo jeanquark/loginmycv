@@ -90,7 +90,7 @@
                                     <v-stepper-content :step="6">
                                         <v-card class="mb-8">
                                             <!-- <file-uploads-component :errors="[]" :rules="rules" :step="step" v-if="!loading" /> -->
-                                            <!-- <file-uploads-component :errors="errors" :rules="rules" :step="step" v-if="!loading" /> -->
+                                            <file-uploads-component :errors="errors" :rules="rules" :step="step" />
                                         </v-card>
                                     </v-stepper-content>
                                 </v-stepper-items>

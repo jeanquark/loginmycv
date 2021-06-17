@@ -1,3 +1,5 @@
+import redirectSSL from 'redirect-ssl'
+
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
@@ -33,6 +35,8 @@ export default {
 	components: true,
 
 	serverMiddleware: [
+		redirectSSL.create({enabled: process.env.NODE_ENV === 'production'}),
+		'~/api/logger',
 		'~/api'
 	],
 
@@ -87,6 +91,7 @@ export default {
                 ]
             }
         ],
+		// ['nuxt-leaflet', { /* module options */ }],
 	],
 
 	vuetify: {
