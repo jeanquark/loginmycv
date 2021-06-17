@@ -118,34 +118,17 @@
                 </v-toolbar>
 
                 <v-card-text class="">
-                    <!-- loadingUpdateResume: {{ loadingUpdateResume }}<br /> -->
-                    <!-- loadingUploadFiles: {{ loadingUploadFiles }}<br /> -->
-                    <!-- uploadFilesError: {{ uploadFilesError }}<br /> -->
-                    <!-- errors: {{ errors }}<br /> -->
-
                     <!-- Updating data -->
-                    <div class="text-center my-3 pt-2" v-if="updateResumeDataProgress">
-                        <v-progress-linear indeterminate height="15" color="primary"></v-progress-linear>
-                        <p class="mt-2">Updating resume...</p>
-                    </div>
                     <v-alert type="error" color="error" prominent text class="my-3" v-if="updateResumeDataError"
                         >An error occured while updating your resume data. Please check validation messages.</v-alert
                     >
                     <v-alert type="success" prominent text class="my-3" v-if="updateResumeDataSuccess">Updating resume data was successful.</v-alert>
 
                     <!-- Uploading profile picture -->
-                    <div class="text-center my-3 pt-2" v-if="uploadResumeImageLoading">
-                        <v-progress-linear indeterminate height="15" color="secondary"></v-progress-linear>
-                        <p class="mt-2">Uploading images...</p>
-                    </div>
                     <v-alert color="error" type="error" prominent text class="my-3" v-for="error in uploadResumeImageErrors" :key="error">{{ error }}</v-alert>
                     <v-alert type="success" prominent text class="my-3" v-for="success in uploadResumeImageSuccess" :key="success">{{ success }}</v-alert>
 
-                    <!-- Uploading files -->
-                    <div class="text-center my-3 pt-2" v-if="uploadResumeFileLoading">
-                        <v-progress-linear indeterminate height="15" color="tertiary"></v-progress-linear>
-                        <p class="mt-2">Uploading files...</p>
-                    </div>
+                    <!-- Uploading files -->  
                     <v-alert color="error" type="error" prominent text class="my-3" v-for="error in uploadResumeFileErrors" :key="error">{{ error }}</v-alert>
                     <v-alert type="success" prominent text class="my-3" v-for="success in uploadResumeFileSuccess" :key="success">{{ success }}</v-alert>
 
@@ -154,18 +137,20 @@
                         <v-alert type="error" prominent text class="my-3">{{ error }}</v-alert>
                     </div>
 
-                    <!-- <v-row no-gutters justify="center" v-if="loadingUploadFiles">
-                        <v-alert :value="loadingUploadFiles" color="secondary" outlined>
-                            <div class="text-xs-center"><v-progress-circular indeterminate color="secondary"></v-progress-circular> Uploading files...</div>
-                        </v-alert>
-                    </v-row>
-                    <v-row no-gutters justify="center" v-if="loadingUpdateResume">
-                        <v-alert :value="loadingUpdateResume" color="primary" outlined>
-                            <div class="text-xs-center"><v-progress-circular indeterminate color="primary"></v-progress-circular> Updating resume...</div>
-                        </v-alert>
-                    </v-row> -->
+                    <div class="text-center my-3 pt-2" v-if="updateResumeDataProgress">
+                        <v-progress-linear indeterminate height="15" color="primary"></v-progress-linear>
+                        <p class="mt-2">Updating resume...</p>
+                    </div>
+                    <div class="text-center my-3 pt-2" v-if="uploadResumeImageLoading">
+                        <v-progress-linear indeterminate height="15" color="secondary"></v-progress-linear>
+                        <p class="mt-2">Uploading images...</p>
+                    </div>
+                    <div class="text-center my-3 pt-2" v-if="uploadResumeFileLoading">
+                        <v-progress-linear indeterminate height="15" color="tertiary"></v-progress-linear>
+                        <p class="mt-2">Uploading files...</p>
+                    </div>
+
                     <v-row no-gutters justify="center" class="mt-4">
-                        <!-- <v-btn color="primary" @click.stop="updateResume" :loading="loadingUpdateResume || loadingUploadFiles">Update</v-btn> -->
                         <v-btn text color="secondary" @click.stop="updatingResumeDialog = false">Close</v-btn>
                     </v-row>
                 </v-card-text>
@@ -177,9 +162,7 @@
 <script>
 import validationRulesClient from '@/api/utils/validationRulesClient'
 import TemplateComponent from '~/components/resume/TemplateComponent'
-// import Noty from 'noty'
-// import { uploadResumeFiles } from '~/api/controllers/resumes'
-const delay = (ms) => new Promise((res) => setTimeout(res, ms))
+const delay = ms => new Promise(res => setTimeout(res, ms))
 
 export default {
     name: 'CandidateUpdateResume',
@@ -190,7 +173,7 @@ export default {
         EducationComponent: () => import('~/components/resume/EducationComponent'),
         WorkExperienceComponent: () => import('~/components/resume/WorkExperienceComponent'),
         SkillsComponent: () => import('~/components/resume/SkillsComponent'),
-        FileUploadsComponent: () => import('~/components/resume/FileUploadsComponent'),
+        FileUploadsComponent: () => import('~/components/resume/FileUploadsComponent')
     },
     layout: 'layoutCandidate',
     // middleware: [],
@@ -216,18 +199,12 @@ export default {
             updateResumeDataProgress: false,
             updateResumeDataError: false,
             updateResumeDataSuccess: false,
-            // uploadResumeImagesProgress: false,
-            // uploadResumeImagesError: false,
-            // uploadResumeImagesSuccess: false,
-            // uploadResumeFilesProgress: false,
-            // uploadResumeFilesError: false,
-            // uploadResumeFilesSuccess: false,
             errorsStepTemplate: false,
             errorsStepPersonalData: false,
             errorsStepEducation: false,
             errorsStepWorkExperience: false,
             errorsStepSkills: false,
-            errorsStepFilesUpload: false,
+            errorsStepFilesUpload: false
         }
     },
     computed: {
@@ -241,7 +218,7 @@ export default {
             return this.$store.getters['resumes/userResumes']
         },
         userResume() {
-            return this.$store.getters['resumes/userResumes'].find((resume) => resume.slug === this.$route.params.slug)
+            return this.$store.getters['resumes/userResumes'].find(resume => resume.slug === this.$route.params.slug)
         },
         uploadResumeImageLoading() {
             return this.$store.getters['images/uploadImageLoading']
@@ -260,7 +237,7 @@ export default {
         },
         uploadResumeFileErrors() {
             return this.$store.getters['files/uploadFileErrors']
-        },
+        }
     },
     methods: {
         moveOneStepForward() {
@@ -285,7 +262,7 @@ export default {
             this.errorsStepWorkExperience = false
             this.errorsStepSkills = false
             this.errorsStepFilesUpload = false
-            Object.keys(errors).forEach((item) => {
+            Object.keys(errors).forEach(item => {
                 console.log('item from checkStepsErrors: ', item)
 
                 // Step template
@@ -307,7 +284,7 @@ export default {
                     'personal_data.email',
                     'personal_data.website',
                     'personal_data.phone_number',
-                    'personal_data.city',
+                    'personal_data.city'
                 ]
                 if (inputs.includes(item) && errors[item].length > 0) {
                     console.log('Personal data errors: ', item)
@@ -348,21 +325,12 @@ export default {
         async updateResume() {
             try {
                 console.log('updateResume')
-                // this.updateResumeDataSuccess = false
-                // this.updateResumeDataError = false
-                // this.uploadResumeImagesSuccess = false
-                // this.uploadResumeImagesError = false
-                // this.uploadResumeFilesSuccess = false
-                // this.uploadResumeFilesError = false
-                // this.$store.commit('CLEAR_ERROR')
-
                 await this.updateResumeData()
                 await this.uploadResumeImages()
                 await this.uploadResumeFiles()
-
                 await this.$store.dispatch('resumes/fetchUserResumes')
                 this.$store.dispatch('setSnackbar', { show: true, text: 'Resume updated successfully!', color: 'success' })
-                this.$router.push('/candidate/resumes')
+                // this.$router.push('/candidate/resumes')
             } catch (error) {
                 console.log('error from updateResume: ', error)
                 // this.$notifier.showMessage({ content: 'An error occured and your resume could not be updated.', color: 'error' })
@@ -385,11 +353,14 @@ export default {
                 this.updateResumeDataError = true
 
                 // Display server-side errors
-                Object.keys(error.response.data.error).forEach((item) => {
+                console.log('Object.keys(error.response.data.error): ', Object.keys(error.response.data.error))
+                Object.keys(error.response.data.error).forEach(item => {
                     console.log('item: ', item)
-                    this.$refs.form.setErrors({
-                        [item]: this.$i18n.t(`validation.${error.response.data.error[item]}`),
-                    })
+                    if (isNaN(item)) {
+                        this.$refs.form.setErrors({
+                            [item]: this.$i18n.t(`validation.${error.response.data.error[item]}`)
+                        })
+                    }
                 })
                 this.checkStepsErrors(error.response.data.error)
                 throw error
@@ -399,12 +370,14 @@ export default {
             try {
                 console.log('uploadResumeImages: ', this.userResume.uploads)
                 this.$store.commit('images/CLEAR_UPLOAD_IMAGE_STATUS')
-                this.$store.commit('images/SET_UPLOAD_IMAGE_LOADING', true)
-                // return
-                // this.uploadResumeImagesProgress = true
-
-                const images = this.userResume.uploads.filter((upload) => upload.type === 'image')
+                const images = this.userResume.uploads.filter(upload => upload.type === 'image')
                 console.log('images: ', images)
+
+                if (images.length < 1) {
+                    return
+                }
+                this.$store.commit('images/SET_UPLOAD_IMAGE_LOADING', true)
+
                 // return
                 for (let i = 0; i < images.length; i++) {
                     console.log('images[i]: ', images[i])
@@ -438,7 +411,7 @@ export default {
                     if (images[i].status === 'to_be_removed_from_db') {
                         console.log('to_be_removed_from_db')
                         await this.$store.dispatch('resumes/removeResumeImage', { resumeId: this.userResume.id, imageName: images[i].name })
-                    }                    
+                    }
                 }
                 console.log('Now update DB!')
                 console.log('userResume.uploads: ', this.userResume.uploads)
@@ -466,7 +439,7 @@ export default {
                 this.$store.commit('files/CLEAR_UPLOAD_FILE_STATUS')
                 // this.uploadResumeFilesProgress = true
                 this.$store.commit('files/SET_UPLOAD_FILE_LOADING', true)
-                const files = this.userResume.uploads.filter((upload) => upload.type === 'file')
+                const files = this.userResume.uploads.filter(upload => upload.type === 'file')
                 console.log('files: ', files)
 
                 // 1) Group all files with similar name in order to account for potential disk operation failures. In such a case, do not update DB.
@@ -523,87 +496,26 @@ export default {
 
                 console.log('Now update DB!')
                 console.log('userResume.uploads: ', this.userResume.uploads)
-                // Update file title
-                // await this.$store.dispatch('resumes/updateResumeFiles', { resumeId: this.userResume.id, resumeFiles: files })
                 await delay(2000)
-                // this.uploadResumeFilesProgress = false
                 this.$store.commit('files/SET_UPLOAD_FILE_LOADING', false)
-                // this.uploadResumeFilesSuccess = true
             } catch (error) {
                 console.log('error: ', error)
-                // this.uploadResumeFilesProgress = false
                 this.$store.commit('files/SET_UPLOAD_FILE_LOADING', false)
-                // this.uploadResumeFilesError = true
-                // this.$store.commit('ADD_ERROR', error.response.data.error)
                 await delay(10000)
-                // alert('Error uploading file')
             }
         },
-        // async uploadResumeFiles2() {
-        //     try {
-        //         console.log('uploadResumeFiles: ', this.userResume.uploads)
-        //         // return
-        //         this.uploadResumeFilesProgress = true
-        //         // await delay(3000)
-        //         // throw new Error('error')
-
-        //         // console.log(
-        //         //     'filter: ',
-        //         //     this.userResume.uploads.filter((file) => file.new === true)
-        //         // )
-        //         const formData = new FormData()
-        //         let array = []
-        //         for (const i of Object.keys(this.userResume.uploads)) {
-        //             formData.append('files', this.userResume.uploads[i]['file'])
-        //             array.push({
-        //                 title: this.userResume.uploads[i]['title'],
-        //                 name: this.userResume.uploads[i]['name'],
-        //                 category: this.userResume.uploads[i]['category'],
-        //                 mime_type: this.userResume.uploads[i]['type'],
-        //                 status: this.userResume.uploads[i]['status'],
-        //             })
-        //         }
-        //         formData.append('array', JSON.stringify(array))
-        //         console.log('formData: ', formData)
-        //         console.log('userResume.id: ', this.userResume.id)
-        //         const abc = await this.$store.dispatch('resumes/uploadResumeFiles', { resumeId: this.userResume.id, uploads: formData })
-        //         console.log('abc: ', abc)
-        //         await delay(2000)
-        //         this.uploadResumeFilesProgress = false
-        //         this.uploadResumeFilesSuccess = true
-        //     } catch (error) {
-        //         console.log('error: ', error)
-        //         this.uploadResumeFilesProgress = false
-        //         this.uploadResumeFilesError = true
-        //         // console.log('error.response.data: ', error.response.data)
-
-        //         // Display serverside errors
-        //         Object.keys(error.response.data.error).forEach((item) => {
-        //             console.log('item: ', item)
-        //             this.$refs.form.setErrors({
-        //                 [item]: this.$i18n.t(`validation.${error.response.data.error[item]}`),
-        //             })
-        //         })
-        //         this.checkStepsErrors(error.response.data.error)
-        //         throw error
-        //     }
-        // },
         validateResume() {
             this.$validator.validateAll()
-        },
+        }
     },
     watch: {
         steps(val) {
             if (this.e1 > val) {
                 this.e1 = val
             }
-        },
-    },
+        }
+    }
 }
 </script>
 
-<style scoped>
-/* .active {
-    border: 2px solid #ffc107;
-} */
-</style>
+<style scoped></style>

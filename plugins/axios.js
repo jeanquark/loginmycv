@@ -84,7 +84,7 @@ export default function({ $axios, store, redirect }) {
             }
             switch (code) {
                 case 401:
-                    // store.dispatch('setSnackbar', { show: true, text: 'Authorization error. You\'re missing the required authorization to retrieve data. Try reconnecting.', color: 'error', timeout: 5000, top: true, right: true })
+                    store.dispatch('setSnackbar', { show: true, text: 'Authorization error. You\'re missing the required authorization to retrieve data. Try reconnecting.', color: 'error', timeout: 5000, top: true, right: true })
                     break
                 case 404:
                     // new Noty({
