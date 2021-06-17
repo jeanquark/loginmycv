@@ -88,3 +88,17 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Users images
+static/images/users/*
+!static/images/users/.gitkeep 
+
+# Users files (but keep empty folder)
+data/files/users/*
+!data/files/users/.gitkeep 
+
+# Images for local dev only
+static/images/random_images
+
+# Deployment config
+ecosystem.config.js
