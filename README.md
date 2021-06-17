@@ -52,6 +52,11 @@ PROCESS_MANAGER=pm2
 HOST=0.0.0.0
 ```
 
+Start server
+```
+pm2 start
+````
+
 ## CI/CD GitHub Actions Secrets
 
 ![github_secrets](static/images/github_secrets.jpg)

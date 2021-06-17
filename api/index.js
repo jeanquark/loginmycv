@@ -12,7 +12,7 @@ const rateLimit = require('express-rate-limit')
 const hpp = require('hpp')
 const cors = require('cors')
 const errorHandler = require('./middleware/error')
-const redirectSSL = require('redirect-ssl')
+// const redirectSSL = require('redirect-ssl')
 
 // Define models
 // const Resume = require('./models/Resume')
@@ -43,11 +43,11 @@ const app = express()
 app.use(express.json())
 
 // Enforce https
-app.use(
-    redirectSSL.create({
-        enabled: process.env.NODE_ENV === 'production'
-    })
-)
+// app.use(
+//     redirectSSL.create({
+//         enabled: process.env.NODE_ENV === 'production'
+//     })
+// )
 
 // File upload on server
 app.use(fileUpload())
