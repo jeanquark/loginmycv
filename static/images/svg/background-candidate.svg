@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1919.9999999999998"
+   height="200"
+   version="1.1"
+   id="svg17"
+   sodipodi:docname="background-candidate.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata23">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs21" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1106"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="1366.5889"
+     inkscape:cy="108.71318"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg17"
+     inkscape:document-rotation="0" />
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <path
+     style="fill:#ffc107;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+     d="m 1663.8259,166.95752 c -51.7184,-2.83732 -107.232,-16.20301 -186.5,-44.90256 -31.7949,-11.51154 -66.73,-19.40365 -105,-23.720267 -18.9978,-2.14282 -82.3091,-2.42653 -108,-0.48397 -9.075,0.68619 -35.625,2.790757 -59,4.676817 -83.8994,6.76961 -114.2763,8.49506 -149.5,8.49179 -79.48708,-0.007 -127.16788,-12.686207 -157.8758,-41.980887 -13.35593,-12.74127 -22.37383,-27.71095 -28.44417,-47.21726 -2.84751,-9.15011 -5.92812,-24.4473204 -5.07137,-25.1825904 0.21521,-0.1847 238.77884,-0.6269499 530.14134,-0.9827899 l 529.75,-0.64698 V 53.919163 112.8295 l -2.75,0.99617 c -74.7705,27.08509 -120.1674,40.20051 -164.7969,47.61072 -19.1101,3.17302 -29.9784,4.37764 -50.4531,5.59214 -18.0666,1.07166 -21.7848,1.06545 -42.5,-0.071 z"
+     id="path11" />
+</svg>

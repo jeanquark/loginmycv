@@ -1,0 +1,258 @@
+[
+    {
+        "_id": "60476db3570afd4662619fc1",
+        "template": "5ea6178a2be785b0c0cbedbb",
+        "slug": "",
+        "password": "",
+        "job_title": "",
+        "is_active": false,
+        "visibility": "public",
+        "personal_data": {
+            "firstname": "",
+            "lastname": "",
+            "middlename": "",
+            "email": "",
+            "phone_number": "",
+            "birthday": "",
+            "city": "",
+            "country": null,
+            "nationalities": [
+            ]
+        },
+        "education": [
+        ],
+        "work_experiences": [
+        ],
+        "skills": [
+        ],
+        "social_networks": [
+        ],
+        "languages": [
+        ],
+        "uploads": [
+        ],
+        "colors": {
+            "primary": "#7A528F",
+            "secondary": "#212026",
+            "tertiary": "#424242",
+            "background": "#000",
+            "text": "#FFF"
+        },
+        "menus": {},
+        "fields": {}
+    },
+    {
+        "_id": "604109018cd02fec94ce760d",
+        "template": "5ea6178a2be785b0c0cbedbb",
+        "slug": "johndoe",
+        "password": "123456",
+        "job_title": "Product designer",
+        "is_active": false,
+        "visibility": "public",
+        "personal_data": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "middlename": "",
+            "email": "john.doe@example.com",
+            "phone_number": "0123456789",
+            "birthday": "",
+            "city": "Zurich",
+            "country": "5ea76372bd0294ecc418c587",
+            "nationalities": [
+                "5ea76372bd0294ecc418c587"
+            ]
+        },
+        "education": [
+            {
+                "title": "Master in Geography",
+                "description": "",
+                "school": "University of Geneva",
+                "city": "Geneva",
+                "country": "Switzerland",
+                "start_date": "October 2002",
+                "end_date": "June 2007",
+                "image": "/oxford.jpg",
+                "coordinates": [
+                    51.76412,
+                    -1.26324
+                ]
+            },
+            {
+                "title": "Bachelor in Economy",
+                "description": "",
+                "school": "University of Geneva",
+                "city": "Geneva",
+                "country": "Switzerland",
+                "start_date": "October 2007",
+                "end_date": "June 2008",
+                "image": "/oxford.jpg"
+            }
+        ],
+        "work_experiences": [
+            {
+                "job_title": "Manager assistant",
+                "company": "ABC SA",
+                "city": "Rolle",
+                "country": "Switzerland",
+                "start_date": "July 2013",
+                "end_date": "December 2013",
+                "image": "/oxford.jpg"
+            }
+        ],
+        "skills": [
+            {
+                "name": "Coding",
+                "slug": "coding",
+                "category": "Software",
+                "type": "pie",
+                "value": 60
+            },
+            {
+                "name": "Accounting",
+                "slug": "accounting",
+                "category": "Software",
+                "type": "bar",
+                "value": 40
+            }
+        ],
+        "social_networks": [
+            {
+                "name": "Github",
+                "slug": "github",
+                "link": "www.google.com",
+                "icon": "github"
+            },
+            {
+                "name": "Linkedin",
+                "slug": "linkedin",
+                "link": "www.google.com",
+                "icon": "linkedin-in"
+            }
+        ],
+        "languages": [
+            {
+                "name": "Français",
+                "slug": "french",
+                "native_speaker": true,
+                "code": "fr"
+            },
+            {
+                "name": "Anglais",
+                "slug": "english",
+                "native_speaker": false,
+                "code": "en",
+                "value": 8
+            },
+            {
+                "name": "Allemand",
+                "slug": "german",
+                "native_speaker": false,
+                "code": "de",
+                "value": 6
+            }
+        ],
+        "uploads": [
+            {
+                "name": "Webstamps.pdf",
+                "title": "Title #1",
+                "category": "downloadable_file",
+                "size_in_bytes": 161278,
+                "download_url": ""
+            }
+        ],
+        "colors": {
+            "primary": "#7A528F",
+            "secondary": "#212026",
+            "tertiary": "#424242",
+            "background": "#000",
+            "text": "#FFF"
+        },
+        "menus": {},
+        "fields": {}
+    },
+    {
+        "_id": "6050cee16726834f7cc18847",
+        "template": "5ea6178a2be785b0c0cbedbb",
+        "slug": "model",
+        "password": "",
+        "job_title": "Web developer",
+        "is_active": false,
+        "visibility": "public",
+        "personal_data": {
+            "firstname": "Jane",
+            "lastname": "Doe",
+            "middlename": "",
+            "email": "",
+            "phone_number": "",
+            "birthday": "",
+            "city": "",
+            "country": null,
+            "nationalities": [
+            ]
+        },
+        "education": [
+        ],
+        "work_experiences": [
+        ],
+        "skills": [
+        ],
+        "social_networks": [
+        ],
+        "languages": [
+        ],
+        "uploads": [
+        ],
+        "colors": {
+            "primary": "#7A528F",
+            "secondary": "#212026",
+            "tertiary": "#424242",
+            "background": "#000",
+            "text": "#FFF"
+        },
+        "menus": {},
+        "fields": {}
+    },
+    {
+        "_id": "6050e62d26381c856ebe9b33",
+        "template": "5ea6178a2be785b0c0cbedbb",
+        "slug": "model",
+        "password": "",
+        "job_title": "Musician",
+        "is_active": false,
+        "visibility": "public",
+        "personal_data": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "middlename": "",
+            "email": "",
+            "phone_number": "",
+            "birthday": "",
+            "city": "",
+            "country": null,
+            "nationalities": [
+            ]
+        },
+        "education": [
+        ],
+        "work_experiences": [
+        ],
+        "skills": [
+        ],
+        "social_networks": [
+        ],
+        "languages": [
+        ],
+        "uploads": [
+        ],
+        "colors": {
+            "primary": "#7A528F",
+            "secondary": "#212026",
+            "tertiary": "#424242",
+            "background": "#000",
+            "text": "#FFF"
+        },
+        "menus": {},
+        "fields": {}
+    }
+
+]

@@ -1,0 +1,102 @@
+[
+    {
+        "_id": "5ea61602367b9b50a5b951b6",
+        "name": "Template 1",
+        "slug": "template001",
+        "description": "Clean and minimalistic design",
+        "image": "template001.jpg",
+        "file": "Template001",
+        "author": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "username": "johndoe"
+        },
+        "package": {
+            "name": "Basic",
+            "slug": "basic"
+        },
+        "colors": {
+            "primary": "#FF0000",
+            "secondary": "#00FF00",
+            "tertiary": "#0000FF",
+            "background": "#000000",
+            "text": "#FFFFFF"
+        },
+        "is_active": true
+    },
+    {
+        "_id": "5ea61778784747ebf27669f8",
+        "name": "Template 2",
+        "slug": "template002",
+        "description": "Conventional format with sleek design",
+        "image": "template002.jpg",
+        "file": "Template002",
+        "author": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "username": "johndoe"
+        },
+        "package": {
+            "name": "Basic",
+            "slug": "basic"
+        },
+        "colors": {
+            "primary": "#FF0000",
+            "secondary": "#00FF00",
+            "tertiary": "#0000FF",
+            "background": "#000000",
+            "text": "#FFFFFF"
+        },
+        "is_active": true
+    },
+    {
+        "_id": "5ea61782b6153ffb055e8988",
+        "name": "Template 3",
+        "slug": "template003",
+        "description": "Full page slides",
+        "image": "template003.jpg",
+        "file": "Template003",
+        "author": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "username": "johndoe"
+        },
+        "package": {
+            "name": "Basic",
+            "slug": "basic"
+        },
+        "colors": {
+            "primary": "#FF0000",
+            "secondary": "#00FF00",
+            "tertiary": "#0000FF",
+            "background": "#000000",
+            "text": "#FFFFFF"
+        },
+        "is_active": false
+    },
+    {
+        "_id": "5ea6178a2be785b0c0cbedbb",
+        "name": "Template 4",
+        "slug": "template004",
+        "description": "Map",
+        "image": "template004.jpg",
+        "file": "Template004",
+        "author": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "username": "johndoe"
+        },
+        "package": {
+            "name": "Basic",
+            "slug": "basic"
+        },
+        "colors": {
+            "primary": "#FF0000",
+            "secondary": "#00FF00",
+            "tertiary": "#0000FF",
+            "background": "#000000",
+            "text": "#FFFFFF"
+        },
+        "is_active": false
+    }
+]

@@ -1,0 +1,658 @@
+[
+    {
+        "_id": "5ea9858ffa48222ffb7b2208",
+        "code": "af",
+        "name": "Afrikaans",
+        "slug": "afrikaans",
+        "flag": "afrikaans.png",
+        "native_name": "Afrikaans"
+    },
+    {
+        "_id": "5ea9861900f785a9673a9c7d",
+        "code": "sq",
+        "name": "Albanian",
+        "slug": "albanian",
+        "flag": "albanian.png",
+        "native_name": "Shqip"
+    },
+    {
+        "_id": "5ea9861eb54fb35506200580",
+        "code": "am",
+        "name": "Amharic",
+        "slug": "amharic",
+        "flag": "amharic.png",
+        "native_name": "አማርኛ"
+    },
+    {
+        "_id": "5ea98624b3dc236fa640a785",
+        "code": "ar",
+        "name": "Arabic",
+        "slug": "arabic",
+        "flag": "arabic.png",
+        "native_name": "العربية"
+    },
+    {
+        "_id": "5ea98628fd9b256ffe452673",
+        "code": "hy",
+        "name": "Armenian",
+        "slug": "armenian",
+        "flag": "armenian.png",
+        "native_name": "Հայերեն"
+    },
+    {
+        "_id": "5ea9862d3206d7cdbce1e44b",
+        "code": "az",
+        "name": "Azerbaijani",
+        "slug": "azerbaijani",
+        "flag": "azerbaijani.png",
+        "native_name": "azərbaycan dili"
+    },
+    {
+        "_id": "5ea9863629b490408ab3a7aa",
+        "code": "be",
+        "name": "Belarusian",
+        "slug": "belarusian",
+        "flag": "belarusian.png",
+        "native_name": "Беларуская"
+    },
+    {
+        "_id": "5ea9863b65b0c119359ede7d",
+        "code": "bn",
+        "name": "Bengali",
+        "slug": "bengali",
+        "flag": "bengali.png",
+        "native_name": "বাংলা"
+    },
+    {
+        "_id": "5ea98641e59c994170824d7e",
+        "code": "bg",
+        "name": "Bulgarian",
+        "slug": "bulgarian",
+        "flag": "bulgarian.png",
+        "native_name": "български език"
+    },
+    {
+        "_id": "5ea98645fe22fcdd72749acc",
+        "code": "my",
+        "name": "Burmese",
+        "slug": "burmese",
+        "flag": "burmese.png",
+        "native_name": "ဗမာစာ"
+    },
+    {
+        "_id": "5ea9864a56b69ddcdf9b9f0f",
+        "code": "ca",
+        "name": "Catalan; Valencian",
+        "slug": "catalan",
+        "flag": "catalan.png",
+        "native_name": "Català"
+    },
+    {
+        "_id": "5ea9864d2418c6afff7b1f8c",
+        "code": "zh",
+        "name": "Chinese",
+        "slug": "chinese",
+        "flag": "chinese.png",
+        "native_name": "中文 (Zhōngwén), 汉语, 漢語"
+    },
+    {
+        "_id": "5ea98653e312d68c348ff4a9",
+        "code": "hr",
+        "name": "Croatian",
+        "slug": "croatian",
+        "flag": "croatian.png",
+        "native_name": "hrvatski"
+    },
+    {
+        "_id": "5ea9865755923792d4085409",
+        "code": "cs",
+        "name": "Czech",
+        "slug": "czech",
+        "flag": "czech.png",
+        "native_name": "česky, čeština"
+    },
+    {
+        "_id": "5ea9865cc2d0583a6667afb9",
+        "code": "da",
+        "name": "Danish",
+        "slug": "danish",
+        "flag": "danish.png",
+        "native_name": "dansk"
+    },
+    {
+        "_id": "5ea9865f42602af272d94465",
+        "code": "nl",
+        "name": "Dutch",
+        "slug": "dutch",
+        "flag": "dutch.png",
+        "native_name": "Nederlands, Vlaams"
+    },
+    {
+        "_id": "5ea98665aef89400885fa7db",
+        "code": "en",
+        "name": "English",
+        "slug": "english",
+        "flag": "english.png",
+        "native_name": "English"
+    },
+    {
+        "_id": "5ea9866f943def58426daac8",
+        "code": "et",
+        "name": "Estonian",
+        "slug": "estonian",
+        "flag": "estonian.png",
+        "native_name": "eesti, eesti keel"
+    },
+    {
+        "_id": "5ea986732cd2317f33c37f27",
+        "code": "fo",
+        "name": "Faroese",
+        "slug": "faroese",
+        "flag": "faroese.png",
+        "native_name": "føroyskt"
+    },
+    {
+        "_id": "5ea98677a906dd1e39aa856a",
+        "code": "fj",
+        "name": "Fijian",
+        "slug": "fijian",
+        "flag": "fijian.png",
+        "native_name": "vosa Vakaviti"
+    },
+    {
+        "_id": "5ea9867bf39f87a2e948caa5",
+        "code": "fi",
+        "name": "Finnish",
+        "slug": "finnish",
+        "flag": "finnish.png",
+        "native_name": "suomi, suomen kieli"
+    },
+    {
+        "_id": "5ea9867ed747d2367c613dfd",
+        "code": "fil",
+        "name": "Filipino",
+        "slug": "filipino",
+        "flag": "filipino.png",
+        "native_name": "Wikang Filipino"
+    },
+    {
+        "_id": "5ea98684ba8ff870d96e7b9f",
+        "code": "fr",
+        "name": "French",
+        "slug": "french",
+        "flag": "french.png",
+        "native_name": "français, langue française"
+    },
+    {
+        "_id": "5ea986896f269f6f2f6175b0",
+        "code": "ka",
+        "name": "Georgian",
+        "slug": "georgian",
+        "flag": "georgian.png",
+        "native_name": "ქართული"
+    },
+    {
+        "_id": "5ea9868c3ec5ccfe64aa0e8c",
+        "code": "de",
+        "name": "German",
+        "slug": "german",
+        "flag": "german.png",
+        "native_name": "Deutsch"
+    },
+    {
+        "_id": "5ea9869080db31abf9eb1490",
+        "code": "el",
+        "name": "Greek, Modern",
+        "slug": "greek",
+        "flag": "greek.png",
+        "native_name": "Ελληνικά"
+    },
+    {
+        "_id": "5ea986962892f72db362aeb0",
+        "code": "gu",
+        "name": "Gujarati",
+        "slug": "gujarati",
+        "flag": "gujarati.png",
+        "native_name": "ગુજરાતી"
+    },
+    {
+        "_id": "5ea9869a3b1c57d0d5d529b1",
+        "code": "ht",
+        "name": "Haitian; Haitian Creole",
+        "slug": "haitian",
+        "flag": "haitian.png",
+        "native_name": "Kreyòl ayisyen"
+    },
+    {
+        "_id": "5ea9869ec0f610828b123525",
+        "code": "he",
+        "name": "Hebrew (modern)",
+        "slug": "hebrew",
+        "flag": "hebrew.png",
+        "native_name": "עברית"
+    },
+    {
+        "_id": "5ea986a3d4fc90d09bde7ce1",
+        "code": "hi",
+        "name": "Hindi",
+        "slug": "hindi",
+        "flag": "hindi.png",
+        "native_name": "हिन्दी, हिंदी"
+    },
+    {
+        "_id": "5ea986a8d6dc620bc53c1edc",
+        "code": "hu",
+        "name": "Hungarian",
+        "slug": "hungarian",
+        "flag": "hungarian.png",
+        "native_name": "Magyar"
+    },
+    {
+        "_id": "5ea986ac18015ffc4961ffb1",
+        "code": "id",
+        "name": "Indonesian",
+        "slug": "indonesian",
+        "flag": "indonesian.png",
+        "native_name": "Bahasa Indonesia"
+    },
+    {
+        "_id": "5ea986b0fadf59e7eceff3cd",
+        "code": "it",
+        "name": "Italian",
+        "slug": "italian",
+        "flag": "italian.png",
+        "native_name": "Italiano"
+    },
+    {
+        "_id": "5ea986b590b3e3e490513821",
+        "code": "ja",
+        "name": "Japanese",
+        "slug": "japanese",
+        "flag": "japanese.png",
+        "native_name": "日本語 (にほんご／にっぽんご)"
+    },
+    {
+        "_id": "5ea986bac9f3d61d0d3c0a8d",
+        "code": "jv",
+        "name": "Javanese",
+        "slug": "javanese",
+        "flag": "javanese.png",
+        "native_name": "basa Jawa"
+    },
+    {
+        "_id": "5ea986c0a58b6b7f1e0eef3c",
+        "code": "kn",
+        "name": "Kannada",
+        "slug": "kannada",
+        "flag": "kannada.png",
+        "native_name": "ಕನ್ನಡ"
+    },
+    {
+        "_id": "5ea986c8a83bd600a5f9eabf",
+        "code": "kk",
+        "name": "Kazakh",
+        "slug": "kazakh",
+        "flag": "kazakh.png",
+        "native_name": "Қазақ тілі"
+    },
+    {
+        "_id": "5ea986cc9e34762c4661294d",
+        "code": "km",
+        "name": "Khmer",
+        "slug": "khmer",
+        "flag": "khmer.png",
+        "native_name": "ភាសាខ្មែរ"
+    },
+    {
+        "_id": "5ea986d0d77f120836008406",
+        "code": "ki",
+        "name": "Kikuyu, Gikuyu",
+        "slug": "kikuyu",
+        "flag": "kikuyu.png",
+        "native_name": "Gĩkũyũ"
+    },
+    {
+        "_id": "5ea986d6d47bd7a1985f8575",
+        "code": "ky",
+        "name": "Kirghiz, Kyrgyz",
+        "slug": "kirghiz",
+        "flag": "kirghiz.png",
+        "native_name": "кыргыз тили"
+    },
+    {
+        "_id": "5ea986dbe48607bccd43cb1b",
+        "code": "ko",
+        "name": "Korean",
+        "slug": "korean",
+        "flag": "korean.png",
+        "native_name": "한국어 (韓國語), 조선말 (朝鮮語)"
+    },
+    {
+        "_id": "5ea986dfdfff89788580d05f",
+        "code": "lb",
+        "name": "Luxembourgish, Letzeburgesch",
+        "slug": "luxembourgish",
+        "flag": "luxembourgish.png",
+        "native_name": "Lëtzebuergesch"
+    },
+    {
+        "_id": "5ea986e5877c9b1bcad3186a",
+        "code": "lo",
+        "name": "Lao",
+        "slug": "lao",
+        "flag": "lao.png",
+        "native_name": "ພາສາລາວ"
+    },
+    {
+        "_id": "5ea986e99ad74de2aa018f2c",
+        "code": "lt",
+        "name": "Lithuanian",
+        "slug": "lithuanian",
+        "flag": "lithuanian.png",
+        "native_name": "lietuvių kalba"
+    },
+    {
+        "_id": "5ea986edf4a2895fc2e1dabe",
+        "code": "lv",
+        "name": "Latvian",
+        "slug": "latvian",
+        "flag": "latvian.png",
+        "native_name": "latviešu valoda"
+    },
+    {
+        "_id": "5ea986f4b44fc2d0ea6de226",
+        "code": "mk",
+        "name": "Macedonian",
+        "slug": "macedonian",
+        "flag": "macedonian.png",
+        "native_name": "македонски јазик"
+    },
+    {
+        "_id": "5ea986f94db138422ca34c06",
+        "code": "mg",
+        "name": "Malagasy",
+        "slug": "malagasy",
+        "flag": "malagasy.png",
+        "native_name": "Malagasy fiteny"
+    },
+    {
+        "_id": "5ea986fdecaaabea39c8c86c",
+        "code": "ms",
+        "name": "Malay",
+        "slug": "malay",
+        "flag": "malay.png",
+        "native_name": "bahasa Melayu, بهاس ملايو‎"
+    },
+    {
+        "_id": "5ea98701f87491f2f75790c1",
+        "code": "ml",
+        "name": "Malayalam",
+        "slug": "malayalam",
+        "flag": "malayalam.png",
+        "native_name": "മലയാളം"
+    },
+    {
+        "_id": "5ea98707c9816b304ce6353e",
+        "code": "mt",
+        "name": "Maltese",
+        "slug": "maltese",
+        "flag": "maltese.png",
+        "native_name": "Malti"
+    },
+    {
+        "_id": "5ea9870bb3f17eb2024724f0",
+        "code": "mr",
+        "name": "Marathi (Marāṭhī)",
+        "slug": "marathi",
+        "flag": "marathi.png",
+        "native_name": "मराठी"
+    },
+    {
+        "_id": "5ea9870f73ae114faabb826e",
+        "code": "mn",
+        "name": "Mongolian",
+        "slug": "mongolian",
+        "flag": "mongolian.png",
+        "native_name": "монгол"
+    },
+    {
+        "_id": "5ea98716ed92dd74a6eda4be",
+        "code": "ne",
+        "name": "Nepali",
+        "slug": "nepali",
+        "flag": "nepali.png",
+        "native_name": "नेपाली"
+    },
+    {
+        "_id": "5ea987194619350c61efb570",
+        "code": "no",
+        "name": "Norwegian",
+        "slug": "norwegian",
+        "flag": "norwegian.png",
+        "native_name": "Norsk"
+    },
+    {
+        "_id": "5ea9871ee7e49ddce3f3bbb1",
+        "code": "pa",
+        "name": "Panjabi, Punjabi",
+        "slug": "panjabi",
+        "flag": "panjabi.png",
+        "native_name": "ਪੰਜਾਬੀ, پنجابی‎"
+    },
+    {
+        "_id": "5ea987237d3b9b74f3c7bf41",
+        "code": "fa",
+        "name": "Persian",
+        "slug": "persian",
+        "flag": "persian.png",
+        "native_name": "فارسی"
+    },
+    {
+        "_id": "5ea9872623d6336135f10f76",
+        "code": "pl",
+        "name": "Polish",
+        "slug": "polish",
+        "flag": "polish.png",
+        "native_name": "polski"
+    },
+    {
+        "_id": "5ea9872a524d378534583e11",
+        "code": "pt",
+        "name": "Portuguese",
+        "slug": "portuguese",
+        "flag": "portuguese.png",
+        "native_name": "Português"
+    },
+    {
+        "_id": "5ea98731a7c0e4076fd89584",
+        "code": "rm",
+        "name": "Romansh",
+        "slug": "romansh",
+        "flag": "romansh.png",
+        "native_name": "rumantsch grischun"
+    },
+    {
+        "_id": "5ea98734bf0a1eda681fa3bb",
+        "code": "ro",
+        "name": "Romanian, Moldavian, Moldovan",
+        "slug": "romanian",
+        "flag": "romanian.png",
+        "native_name": "română"
+    },
+    {
+        "_id": "5ea9873877b9e0705d93599f",
+        "code": "ru",
+        "name": "Russian",
+        "slug": "russian",
+        "flag": "russian.png",
+        "native_name": "русский язык"
+    },
+    {
+        "_id": "5ea9873e8144638618114c96",
+        "code": "sa",
+        "name": "Sanskrit (Saṁskṛta)",
+        "slug": "sanskrit",
+        "flag": "sanskrit.png",
+        "native_name": "संस्कृतम्"
+    },
+    {
+        "_id": "5ea98742eb20bb9e59aceeb3",
+        "code": "sr",
+        "name": "Serbian",
+        "slug": "serbian",
+        "flag": "serbian.png",
+        "native_name": "српски језик"
+    },
+    {
+        "_id": "5ea987468fcb93860032f75e",
+        "code": "gd",
+        "name": "Scottish Gaelic; Gaelic",
+        "slug": "scottish_gaelic",
+        "flag": "scottish_gaelic.png",
+        "native_name": "Gàidhlig"
+    },
+    {
+        "_id": "5ea98749f10e975c59e9750d",
+        "code": "si",
+        "name": "Sinhala, Sinhalese",
+        "slug": "sinhala",
+        "flag": "sinhala.png",
+        "native_name": "සිංහල"
+    },
+    {
+        "_id": "5ea98a73d7047af857659025",
+        "code": "sk",
+        "name": "Slovak",
+        "slug": "slovak",
+        "flag": "slovak.png",
+        "native_name": "slovenčina"
+    },
+    {
+        "_id": "5ea98752d6da38262fca26fe",
+        "code": "sl",
+        "name": "Slovene",
+        "slug": "slovene",
+        "flag": "slovene.png",
+        "native_name": "slovenščina"
+    },
+    {
+        "_id": "5ea987562f6d5d90928e3752",
+        "code": "so",
+        "name": "Somali",
+        "slug": "somali",
+        "flag": "somali.png",
+        "native_name": "Soomaaliga, af Soomaali"
+    },
+    {
+        "_id": "5ea9875a1c8c14ddfbebf23c",
+        "code": "es",
+        "name": "Spanish; Castilian",
+        "slug": "spanish",
+        "flag": "spanish.png",
+        "native_name": "español, castellano"
+    },
+    {
+        "_id": "5ea98760b87ab056ecd4f6df",
+        "code": "su",
+        "name": "Sundanese",
+        "slug": "sundanese",
+        "flag": "sundanese.png",
+        "native_name": "Basa Sunda"
+    },
+    {
+        "_id": "5ea98766b96b3e970a1ba14a",
+        "code": "sw",
+        "name": "Swahili",
+        "slug": "swahili",
+        "flag": "swahili.png",
+        "native_name": "Kiswahili"
+    },
+    {
+        "_id": "5ea9876901b71978ba2ffc89",
+        "code": "sv",
+        "name": "Swedish",
+        "slug": "swedish",
+        "flag": "swedish.png",
+        "native_name": "svenska"
+    },
+    {
+        "_id": "5ea9876d05c92e9114cc7b69",
+        "code": "ta",
+        "name": "Tamil",
+        "slug": "tamil",
+        "flag": "tamil.png",
+        "native_name": "தமிழ்"
+    },
+    {
+        "_id": "5ea987719483d9945f9c9b16",
+        "code": "te",
+        "name": "Telugu",
+        "slug": "telugu",
+        "flag": "telugu.png",
+        "native_name": "తెలుగు"
+    },
+    {
+        "_id": "5ea9877760a2f98f4cb9d863",
+        "code": "th",
+        "name": "Thai",
+        "slug": "thai",
+        "flag": "thai.png",
+        "native_name": "ไทย"
+    },
+    {
+        "_id": "5ea9877bfdf229a93c5dcae5",
+        "code": "tr",
+        "name": "Turkish",
+        "slug": "turkish",
+        "flag": "turkish.png",
+        "native_name": "Türkçe"
+    },
+    {
+        "_id": "5ea98780ccd9419aed389f7a",
+        "code": "ty",
+        "name": "Tahitian",
+        "slug": "tahitian",
+        "flag": "tahitian.png",
+        "native_name": "Reo Tahiti"
+    },
+    {
+        "_id": "5ea98785e0cb88d02da0008e",
+        "code": "uk",
+        "name": "Ukrainian",
+        "slug": "ukrainian",
+        "flag": "ukrainian.png",
+        "native_name": "українська"
+    },
+    {
+        "_id": "5ea98789ef8cfd64ba4a13ca",
+        "code": "ur",
+        "name": "Urdu",
+        "slug": "urdu",
+        "flag": "urdu.png",
+        "native_name": "اردو"
+    },
+    {
+        "_id": "5ea9878cce41b7aced5e1bff",
+        "code": "uz",
+        "name": "Uzbek",
+        "slug": "uzbek",
+        "flag": "uzbek.png",
+        "native_name": "zbek, Ўзбек, أۇزبېك‎"
+    },
+    {
+        "_id": "5ea98a943e6dccf86b69804e",
+        "code": "vi",
+        "name": "Vietnamese",
+        "slug": "vietnamese",
+        "flag": "vietnamese.png",
+        "native_name": "Tiếng Việt"
+    },
+    {
+        "_id": "5ea987951793ad5f92737161",
+        "code": "cy",
+        "name": "Welsh",
+        "slug": "welsh",
+        "flag": "welsh.png",
+        "native_name": "Cymraeg"
+    }
+]

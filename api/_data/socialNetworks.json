@@ -1,0 +1,51 @@
+[
+    {
+        "_id": "5eacad3b0435aa9dac102a64",
+        "name": "Github",
+        "slug": "github",
+        "color": "#323131",
+        "fontawesome": "github"
+    },
+    {
+        "_id": "5eacae66e5d00bda7db91ed9",
+        "name": "Facebook",
+        "slug": "facebook",
+        "color": "#3c599f",
+        "fontawesome": "facebook-f"
+    },
+    {
+        "_id": "5eacae6cb993d878407be853",
+        "name": "Instagram",
+        "slug": "instagram",
+        "color": "#9734c5",
+        "fontawesome": "instagram"
+    },
+    {
+        "_id": "5eacae72ca76e1653fdb148e",
+        "name": "Linkedin",
+        "slug": "linkedin",
+        "color": "#0274b3",
+        "fontawesome": "linkedin-in"
+    },
+    {
+        "_id": "5eacba8eec7495ab0d98c483",
+        "name": "Pinterest",
+        "slug": "pinterest",
+        "color": "#bd081c",
+        "fontawesome": "pinterest"
+    },
+    {
+        "_id": "5eacae7e89f9351f67516831",
+        "name": "Twitter",
+        "slug": "twitter",
+        "color": "#1da1f3",
+        "fontawesome": "twitter"
+    },
+    {
+        "_id": "5eacae85a4bfa39a66616cd4",
+        "name": "Weixin/WeChat",
+        "slug": "weixin",
+        "color": "#02dc6c",
+        "fontawesome": "weixin"
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "_id": "5e6d65f921e26d1801c7e702",
+        "user": "5e66fbd716b536f1880127e5",
+        "resume": "5e66fc284aff05521ef78cb3",
+        "status": "accorded",
+        "message": "Ceci est mon message"
+    },
+    {
+        "_id": "5e6d66038dc73e6926e163df",
+        "user": "5e66fbd716b536f1880127e5",
+        "resume": "5e66fc2fb35e17a45ce06fc0",
+        "status": "in_process",
+        "message": "Ceci est mon message"
+    }
+]
