@@ -6,7 +6,7 @@
         <!-- userReceivedAuthorizations: {{ userReceivedAuthorizations }}<br /><br /> -->
         <!-- authUser.authorizations: {{ authUser.authorizations }}<br /><br /> -->
         <!-- abc<br /><br /> -->
-        Last successful deployment: June 17<sup>th</sup> 16:07
+        Last successful deployment: June 17<sup>th</sup> 16:29
         <v-snackbar :timeout="-1" :value="true" top color="tertiary">This website is a work in progress and will be made publicly available soon.</v-snackbar>
 
         <client-only>
