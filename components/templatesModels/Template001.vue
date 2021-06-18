@@ -12,6 +12,7 @@
                     <!-- isTemplateModel: {{ isTemplateModel }}<br /><br /> -->
                     <!-- primaryColor: {{ primaryColor }}<br /> -->
                     <!-- files: {{ files }}<br /> -->
+                    Template001
                     <v-card elevation-10 v-if="resume.personal_data" class="secondary-color-background">
                         <v-card-text>
                             <v-row no-gutters>
@@ -66,19 +67,13 @@
                                     </v-row>
                                     <v-row no-gutters class="pa-2 text-big" v-if="resume.personal_data.nationalities || resume.languages">
                                         <v-col cols="12" sm="6" v-if="resume.personal_data.nationalities">
-                                            <div v-if="resume.personal_data.nationalities.length > 1" class="text-left">
+                                            <div v-if="resume.personal_data.nationalities.length > 0" class="text-left">
                                                 <span>{{ (resume.fields && resume.fields['nationalities']) || 'Nationalities' }}:</span>
                                                 <ul class="list-horizontal">
                                                     <li v-for="(nationality, index) in nationalities" :key="index">
                                                         <b>{{ nationality.name }}</b>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div v-else>
-                                                resume.personal_data.nationalities[0]: {{ resume.personal_data.nationalities[0] }}
-                                                <!-- <span
-                                                    >{{ (resume.fields && resume.fields['nationality']) || 'Nationality' }}: <b>{{ resume.personal_data.nationalities[0]['name'] }}</b></span
-                                                > -->
                                             </div>
                                         </v-col>
                                         <v-col cols="12" sm="6" class="text-center pa-2" v-if="resume.languages">
@@ -200,15 +195,15 @@
 
             <!-- Section Skills -->
             <v-row no-gutters class="margin-bottom" v-if="resume.skills && resume.skills.length > 0">
-                <v-col cols="12" sm="8" offset-sm="2" style="border: 1px dashed green;">
+                <v-col cols="12" sm="8" offset-sm="2" style="border: 0px dashed green;">
                     <h2 class="text-center display-1 primary-color-text">{{ (resume.menus && resume.menus['skills']) || 'Skills' }}</h2>
                     <br />
-                    <v-card class="secondary-color-background" style="border: 1px solid lightblue;">
+                    <v-card class="secondary-color-background" style="border: 0px solid lightblue;">
                         <v-row no-gutters justify="center">
                             <v-col cols="12" class="text-center pa-3" v-for="(skill, index) in skills" :key="index">
                                 <h3 class="text-center mb-2">{{ skill[0].category }}</h3>
                                 <v-row no-gutters justify="center" align="center">
-                                    <v-col cols="12" sm="12" md="12" lg="12" class="py-3" v-for="s in skill" :key="s.name" style="border: 1px solid red;">
+                                    <v-col cols="12" sm="12" md="12" lg="12" class="py-3" v-for="s in skill" :key="s.name" style="border: 0px solid red;">
                                         <div v-if="s.type === 'pie'">
                                             <v-progress-circular :rotate="270" :size="100" :width="15" :value="s.value" :color="resume.colors.primary" style=""> {{ s.value }}% </v-progress-circular
                                             ><br />

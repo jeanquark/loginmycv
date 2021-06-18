@@ -333,14 +333,14 @@ export default {
                 // this.$router.push('/candidate/resumes')
             } catch (error) {
                 console.log('error from updateResume: ', error)
-                // this.$notifier.showMessage({ content: 'An error occured and your resume could not be updated.', color: 'error' })
-                this.$store.dispatch('setSnackbar', { show: true, text: 'Resume could not be updated.', color: 'error' })
+                // this.$store.dispatch('setSnackbar', { show: true, text: 'Resume could not be updated.', color: 'error' })
             }
         },
         async updateResumeData() {
             try {
                 console.log('updateResumeData')
                 this.updateResumeDataProgress = true
+                this.updateResumeDataSuccess = false
                 console.log('userResume.uploads: ', this.userResume.uploads)
                 // throw new Error('error')
                 await this.$store.dispatch('resumes/updateResumeData', this.userResume)

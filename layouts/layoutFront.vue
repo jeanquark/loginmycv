@@ -49,8 +49,10 @@
 
                     <div class="d-inline-flex" v-if="authUser">
                         <nuxt-link to="/candidate/resumes" class="menu-button">
+                            <div class="text-center">
                             {{ authUser.firstname }} {{ authUser.lastname }}<br />
-                            <small>My resumes</small>
+                            <small class="">My resumes</small>
+                            </div>
                         </nuxt-link>
                         <nuxt-link to="/admin" class="menu-button" v-if="authUser.role && authUser.role === 'admin'">Admin</nuxt-link>
 

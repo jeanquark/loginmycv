@@ -65,6 +65,7 @@ export default function({ $axios, store, redirect }) {
         // console.log('$axios.onError: ', error)
         //   this.$toast.error('API error')
         if (error.response && error.response.status) {
+            console.log('error.response: ', error.response)
             const code = parseInt(error.response.status)
             console.log('code: ', code)
             if (error.response.data) {
@@ -84,44 +85,19 @@ export default function({ $axios, store, redirect }) {
             }
             switch (code) {
                 case 401:
-                    store.dispatch('setSnackbar', { show: true, text: 'Authorization error. You\'re missing the required authorization to retrieve data. Try reconnecting.', color: 'error', timeout: 5000, top: true, right: true })
+                    store.dispatch('setSnackbar', { show: true, text: 'Authorization error. You\'re missing the required authorization to process the request. Try reconnecting.', color: 'error', timeout: 5000, top: true, right: true })
                     break
                 case 404:
-                    // new Noty({
-                    //     type: 'error',
-                    //     text: `Not found error. Data could not be retrieved.`,
-                    //     timeout: 5000,
-                    //     theme: 'metroui'
-                    // }).show()
                     store.dispatch('setSnackbar', { show: true, text: 'Not found error. Data could not be retrieved.', color: 'error', timeout: 5000, top: true, right: true })
                     break
                 case 422:
-                    // new Noty({
-                    //     type: 'error',
-                    //     text: `Validation error. Check error messages.`,
-                    //     timeout: 5000,
-                    //     theme: 'metroui'
-                    // }).show()
-                    // $notifier.showMessage({ content: `Validation error. Check error messages.`, color: 'error' })
                     store.dispatch('setSnackbar', { show: true, text: 'Please check validation errors.', color: 'error', top: true })
-                    // alert('Please check validation errors.')
                     break
                 case 500:
-                    // new Noty({
-                    //     type: 'error',
-                    //     text: `Server error: Data could not be retrieved.`,
-                    //     timeout: 5000,
-                    //     theme: 'metroui'
-                    // }).show()
                     store.dispatch('setSnackbar', { show: true, text: 'Server error: Data could not be retrieved.', color: 'error', top: true })
                     break
                 default:
-                    // new Noty({
-                    //     type: 'error',
-                    //     text: `API error: Data could not be retrieved.`,
-                    //     timeout: 5000,
-                    //     theme: 'metroui'
-                    // }).show()
+                    store.dispatch('setSnackbar', { show: true, text: 'General server error: Data could not be retrieved.', color: 'error', top: true })
             }
         }
     })

@@ -129,7 +129,7 @@ exports.getUserResumes = asyncHandler(async (req, res, next) => {
         .populate('personal_data.country')
         .populate('personal_data.nationalities')
     // const resume = req.userResume
-    console.log('resumes.uploads: ', resumes[1]['uploads'])
+    // console.log('resumes.uploads: ', resumes[1]['uploads'])
 
     if (!resumes) {
         return next(new ErrorResponse(`No resume found for user ${req.user.id}`, 404))

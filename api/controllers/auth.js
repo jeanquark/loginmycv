@@ -487,8 +487,8 @@ const sendTokenResponseUser = (user, statusCode, res) => {
     // console.log('user2: ', user)
 
     const options = {
-        // expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 24 * 60 * 60 * 1000),
+        // expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 1000),
         httpOnly: true
     }
 

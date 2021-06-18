@@ -95,39 +95,27 @@
 
         <v-row no-gutters class="my-5">
             <v-col cols="12" v-if="userResumes.length">
-                <!-- <resume-statistics></resume-statistics> -->
+                <resume-statistics></resume-statistics>
             </v-col>
         </v-row>
 
         <v-row no-gutters>
-            <!-- <v-snackbar v-model="snackbarDeleteResume" :timeout="5000" :bottom="true">
-                <span class="pa-2" style="font-size: 1.3em"
-                    >Are you sure you want to delete resume <span class="secondary--text">{{ resume.slug }}</span
-                    >?</span
-                >
-                <v-btn color="pink" text @click="deleteResume">
-                    <span style="font-size: 1.3em">Yes</span>
-                </v-btn>
-                <v-btn color="secondary" text @click="snackbarDeleteResume = false">
-                    <span style="font-size: 1.3em">No</span>
-                </v-btn>
-            </v-snackbar> -->
-
             <v-snackbar :value="snackbarNoResume" :timeout="-1" :bottom="true">
                 <v-avatar size="48" color="grey lighten-4" class="mr-3">
-                    <img src="/images/ivan-min.jpg" alt="avatar" />
+                    <img src="/images/logo_512_512.png" alt="avatar" />
                 </v-avatar>
 
                 <span class="pa-2" style="font-size: 1.3em"
-                    >It looks like you have no resume at the moment. Start off by clicking the
-                    <v-btn fab small color="pink" class="ml-0 disabled-button">
-                        <v-icon>add</v-icon>
+                    >It seems you have no resume at the moment. Start off by clicking the
+                    <v-btn fab small class="ml-0 disabled-button">
+                        <v-icon color="primary">mdi-plus-box</v-icon>
                     </v-btn>
-                    button</span
+                    button.</span
                 >
-                <v-btn color="secondary" text @click="snackbarNoResume = false">
-                    <span style="font-size: 1.3em">Close</span>
-                </v-btn>
+
+                <template v-slot:action="{ attrs }">
+                    <v-btn color="pink" text v-bind="attrs" @click="snackbarNoResume = false"> Close </v-btn>
+                </template>
             </v-snackbar>
         </v-row>
     </v-container>
@@ -137,11 +125,11 @@
 // import Noty from 'noty'
 import moment from 'moment'
 import Avatar from 'vue-avatar'
-// import ResumeStatistics from '~/components/resume/ResumeStatistics'
+import ResumeStatistics from '~/components/resume/ResumeStatistics'
 
 export default {
     name: 'CandidateResumes',
-    components: { Avatar },
+    components: { Avatar, ResumeStatistics },
     layout: 'layoutCandidate',
     async created() {
         this.$store.commit('SET_LOADING', false)

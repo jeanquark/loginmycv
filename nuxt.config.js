@@ -110,7 +110,8 @@ export default {
 			google: {
 				// https://console.developers.google.com/
 				client_id: '411036483039-tk6vfv63ege4uru0b7slcas2peu6asov.apps.googleusercontent.com',
-				redirect_uri: 'http://localhost:3000/callback-oauth-google'
+				// redirect_uri: 'http://localhost:3000/callback-oauth-google'
+				redirect_uri: `${process.env.BASE_URL}/callback-oauth-google`
 			},
 			facebook: {
 				// https://developers.facebook.com/
@@ -120,7 +121,8 @@ export default {
 				// client_id: '699909237207674',
 				client_id: '2430445766977108',
 				scope: ['public_profile', 'email'],
-				redirect_uri: 'http://localhost:3000/callback-oauth-facebook'
+				// redirect_uri: 'http://localhost:3000/callback-oauth-facebook'
+				redirect_uri: `${process.env.BASE_URL}/callback-oauth-facebook`
 			}
 		},
 		vuex: {

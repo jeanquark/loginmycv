@@ -22,7 +22,7 @@
 
                     <v-row no-gutters class="my-5 px-5">
                         <v-col cols="12" sm="6" class="px-5">
-                            <v-btn block small color="#df4a32" class="white--text" :loading="loadingGoogle" :disabled="true" @click="signInWithGoogle"
+                            <v-btn block small color="#df4a32" class="white--text" :loading="loadingGoogle" @click="signInWithGoogle"
                                 >Login with Google &nbsp;<font-awesome-icon :icon="['fab', 'google']"
                             /></v-btn>
                         </v-col>
@@ -118,9 +118,6 @@ export default {
                 this.$store.dispatch('setSnackbar', { show: true, text: `Welcome back ${this.authUser.firstname}!`, color: 'success', top: true, right: true })
                 this.$router.push('/candidate/resumes')
             } catch (error) {
-                // console.log('error.response: ', error.response)
-                // console.log('error.response.data: ', error.response.data)
-                // console.log('error.response.data.error: ', error.response.data.error)
                 this.$refs.form.setErrors({
                     password: this.$i18n.t(`validation.${error.response.data.error}`),
                 })
@@ -130,72 +127,23 @@ export default {
         async signInWithGoogle() {
             try {
                 console.log('signInWithGoogle')
-                const abc = await this.$auth.loginWith('google')
-                console.log('abc: ', abc)
-
-                // this.$store.commit('SET_LOADING', true, { root: true })
-                // this.loadingGoogle = true
-                // await this.$store.dispatch('firebase-auth/signInWithGooglePopup')
-                // this.$store.commit('SET_LOADING', false, { root: true })
-                // this.loadingGoogle = false
-                // if (this.$store.getters['loadedOpenComponent']) {
-                //     this.$store.commit(this.$store.getters['loadedOpenComponent'])
-                //     this.$store.commit('clearOpenComponent')
-                //     this.$store.commit('CLOSE_LOGIN_MODAL')
-                // }
-                // if (this.$store.getters['loadedRedirect']) {
-                //     this.$router.replace(this.$store.getters['loadedRedirect'])
-                //     this.$store.commit('CLEAR_REDIRECT')
-                //     this.$store.commit('CLOSE_LOGIN_MODAL')
-                // } else {
-                //     this.$router.replace('/candidate/resumes')
-                //     this.$store.commit('CLOSE_LOGIN_MODAL')
-                // }
+                this.loadingGoogle = true
+                await this.$auth.loginWith('google')
             } catch (error) {
                 console.log('error: ', error)
-                // this.$store.commit('SET_LOADING', false, { root: true })
-                // this.loadingGoogle = false
-                // new Noty({
-                //     type: 'error',
-                //     text: 'Sorry, an error occured and you could not log in.',
-                //     timeout: 5000,
-                //     theme: 'metroui',
-                // }).show()
+                this.loadingGoogle = false
                 // this.$sentry.captureException(new Error(error))
             }
         },
         async signInWithFacebook() {
             try {
                 console.log('signInWithFacebook')
+                this.loadingFacebook = true
                 const abc = await this.$auth.loginWith('facebook')
                 console.log('abc: ', abc)
-                // this.$store.commit('SET_LOADING', true, { root: true })
-                // this.loadingFacebook = true
-                // await this.$store.dispatch('firebase-auth/signInWithFacebookPopup')
-                // this.$store.commit('SET_LOADING', false, { root: true })
-                // this.loadingFacebook = false
-                // if (this.$store.getters['loadedOpenComponent']) {
-                //     this.$store.commit(this.$store.getters['loadedOpenComponent'])
-                //     // this.$store.commit('clearOpenComponent')
-                //     this.$store.commit('CLEAR_OPEN_COMPONENT')
-                // }
-                // if (this.$store.getters['loadedRedirect']) {
-                //     this.$router.replace(this.$store.getters['loadedRedirect'])
-                //     // this.$store.commit('CLEAR_REDIRECT')
-                //     this.$store.commit('CLEAR_REDIRECT')
-                // } else {
-                //     this.$router.replace('/candidate/resumes')
-                // }
             } catch (error) {
                 console.log('error: ', error)
-                // this.$store.commit('SET_LOADING', false, { root: true })
-                // this.loadingFacebook = false
-                // new Noty({
-                //     type: 'error',
-                //     text: 'Sorry, an error occured and you could not log in.',
-                //     timeout: 5000,
-                //     theme: 'metroui',
-                // }).show()
+                this.loadingFacebook = false
                 // this.$sentry.captureException(new Error(error))
             }
         },

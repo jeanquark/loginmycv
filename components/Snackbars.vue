@@ -4,7 +4,8 @@
         <!-- snackbars: {{ snackbars }}<br /> -->
         <!--  -->
         <v-snackbar :top="snackbar.top" :right="snackbar.right" :color="snackbar.color" :timeout="snackbar.timeout" v-for="(snackbar, index) in snackbars.filter((s) => s.show)" :key="index" :style="`bottom: ${index * 55 + 5}px`" v-model="snackbar.show">
-            {{ snackbar.text }}
+            <div v-html="snackbar.text"></div>
+            <!-- {{ snackbar.text }} -->
             <template v-slot:action="{ attrs }">
                 <!-- <v-btn color="success" text v-bind="attrs" @click="confirmAction(index)" v-if="snackbar.confirmation">Yes</v-btn> -->
                 <v-btn color="tertiary" icon v-bind="attrs" @click="removeSnackbar(index)"><v-icon>mdi-close</v-icon></v-btn>
