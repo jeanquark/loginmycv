@@ -201,7 +201,6 @@ export default {
         authUser() {
             return this.$store.getters['auth/authUser']
         },
-
         theme() {
             return this.$vuetify.theme.dark ? 'dark' : 'light'
             // if (this.authUser) {

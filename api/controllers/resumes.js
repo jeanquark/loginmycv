@@ -253,7 +253,7 @@ exports.createResume = asyncHandler(async (req, res, next) => {
 exports.updateResumeData = asyncHandler(async (req, res, next) => {
     console.log('[resumes controller] @updateResume req.params.id: ', req.params.id)
     console.log('[resumes controller] @updateResume req.user.id: ', req.user.id)
-    console.log('[resumes controller] @updateResume req.body: ', req.body)
+    // console.log('[resumes controller] @updateResume req.body: ', req.body)
     // return next(new ErrorResponse(`Resume not found with id of ${req.params.id}`, 404))
 
     let resume = await Resume.findById(req.params.id)

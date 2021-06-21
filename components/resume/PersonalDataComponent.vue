@@ -460,7 +460,8 @@
                                 <small>(You will have to transmit this password to your guests for access)</small>
                             </v-col>
                             <v-col cols="12" sm="6" class="mx-5">
-                                <ValidationProvider v-slot="{ errors }" vid="password" name="Password" :rules="rules.password">
+                                <!-- <ValidationProvider v-slot="{ errors }" vid="password" name="Password" :rules="rules.password"> -->
+                                <ValidationProvider v-slot="{ errors }" vid="password" name="Password">
                                     <v-text-field
                                         :type="showPassword ? 'text' : 'password'"
                                         name="password"

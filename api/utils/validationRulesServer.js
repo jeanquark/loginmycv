@@ -35,13 +35,14 @@ const validationRulesServer = {
     job_description: {
         maxlength: [512, 'server.max'],
     },
-    password: {
-        // minLength: [6, 'server.min'],
-        maxlength: [64, 'server.max'],
-        required: function() {
-            return this.slug.length < 1
-        }
-    },
+    // password: {
+    //     // required: [true, 'server.required'],
+    //     minLength: [6, 'server.min'],
+    //     maxlength: [64, 'server.max'],
+    //     // required: function() {
+    //     //     return this.slug.length < 1
+    //     // }
+    // },
     // visitor_password: {
     //     minLength: [6, 'server.min'],
     //     maxlength: [64, 'server.max']

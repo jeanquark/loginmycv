@@ -44,6 +44,7 @@
                 <nuxt />
 
                 <Snackbars></Snackbars>
+                snackbars: {{ snackbars }}<br />
                 <Confirm ref="confirm"></Confirm>
             </v-container>
         </v-main>
@@ -99,6 +100,9 @@ export default {
         },
         authUser() {
             return this.$store.getters['auth/authUser']
+        },
+        snackbars() {
+            return this.$store.getters['snackbars']
         },
         getUserAuthorizationsNotifications() {
             try {

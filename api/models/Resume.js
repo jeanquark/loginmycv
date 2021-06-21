@@ -512,7 +512,7 @@ ResumeSchema.plugin(uniqueValidator, { message: 'unique_slug' })
 
 // Encrypt visitor password using bcrypt
 ResumeSchema.pre('save', async function (next) {
-    // console.log('pre save')
+    console.log('pre save')
     if (!this.isModified('password')) {
         // if (!this.isModified('visitor_password')) {
         next()
@@ -524,24 +524,51 @@ ResumeSchema.pre('save', async function (next) {
 })
 
 // Encrypt updated visitor password using bcrypt
-ResumeSchema.pre('findOneAndUpdate', async function (next) {
+ResumeSchema.pre('findOneAndUpdate', async function (resume, next) {
     console.log('pre findOneAndUpdate _update.visibility: ', this._update.visibility)
     console.log('pre findOneAndUpdate _update.password: ', this._update.password)
+    console.log('pre findOneAndUpdate resume.password: ', resume.password)
+
+    // if (!this.isModified('password')) {
+    //     next()
+    // }
 
     // Making sure a password is provided for private or semi-private resumes
-    // if (this._update.visibility === 'semi-private' || this._update.visibility === 'private') {
-    //     if (!this._update.password) {
-    //         console.log('A password is required!')
-    //         let err = new Error()
-    //         err.name = 'ValidationError'
-    //         err.errors = {
-    //             password: {
-    //                 message: 'server.required'
-    //             }
-    //         }
-    //         next(err)
-    //     }
-    // }
+    if (this._update.visibility !== 'public') {
+        if (!this._update.password) {
+            console.log('A password is required!')
+            let err = new Error()
+            err.name = 'ValidationError'
+            err.errors = {
+                password: {
+                    message: 'server.required'
+                }
+            }
+            next(err)
+        }
+        if (this._update.password.length < 6) {
+            console.log('Password is too short!')
+            let err = new Error()
+            err.name = 'ValidationError'
+            err.errors = {
+                password: {
+                    message: 'server.min'
+                }
+            }
+            next(err)
+        }
+        if (this._update.password.length > 64) {
+            console.log('Password is too long!')
+            let err = new Error()
+            err.name = 'ValidationError'
+            err.errors = {
+                password: {
+                    message: 'server.max'
+                }
+            }
+            next(err)
+        }
+    }
 
     if (this._update.password) {
         const salt = await bcrypt.genSalt(10)
