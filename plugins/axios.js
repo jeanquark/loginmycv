@@ -91,13 +91,13 @@ export default function({ $axios, store, redirect }) {
                     store.dispatch('setSnackbar', { show: true, text: 'Not found error. Data could not be retrieved.', color: 'error', timeout: 5000, top: true, right: true })
                     break
                 case 422:
-                    store.dispatch('setSnackbar', { show: true, text: 'Please check validation errors.', color: 'error', top: true })
+                    store.dispatch('setSnackbar', { show: true, text: 'Please check validation errors.', color: 'error', top: true, right: true })
                     break
                 case 500:
                     store.dispatch('setSnackbar', { show: true, text: 'Server error: Data could not be retrieved.', color: 'error', top: true })
                     break
                 default:
-                    store.dispatch('setSnackbar', { show: true, text: 'General server error: Data could not be retrieved.', color: 'error', top: true })
+                    store.dispatch('setSnackbar', { show: true, text: 'General server error.', color: 'error', top: true })
             }
         }
     })

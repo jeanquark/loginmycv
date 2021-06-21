@@ -525,7 +525,8 @@ ResumeSchema.pre('save', async function (next) {
 
 // Encrypt updated visitor password using bcrypt
 ResumeSchema.pre('findOneAndUpdate', async function (next) {
-    console.log('pre findOneAndUpdate _update: ', this._update.password)
+    console.log('pre findOneAndUpdate _update.visibility: ', this._update.visibility)
+    console.log('pre findOneAndUpdate _update.password: ', this._update.password)
 
     // Making sure a password is provided for private or semi-private resumes
     // if (this._update.visibility === 'semi-private' || this._update.visibility === 'private') {

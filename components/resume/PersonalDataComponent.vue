@@ -439,18 +439,17 @@
                         </v-row>
                         <v-row no-gutters justify="center">
                             <v-alert prominent color="success" icon="mdi-checkbox-marked-circle" v-if="userResume.visibility === 'public'">
-                                <span class="subheading font-weight-medium">An excerpt of your resume with free access to your data appears on the frontpage (recommanded option).</span>
+                                <span class="subheading font-weight-medium">An excerpt of your resume with direct access to the data it contains is available on the website. (Recommanded for maximum visibility).</span>
                             </v-alert>
                             <v-alert prominent color="info" icon="mdi-information" v-if="userResume.visibility === 'semi-private'">
                                 <span class="subheading font-weight-medium"
-                                    >An excerpt of your resume appears on the frontpage. However to gain full access, visitors either need to ask for your authorization, or they will be prompted to
+                                    >An excerpt of your resume appears on the website. However to gain full access, visitors <u>will be</u> prompted to
                                     enter the password you specify below.</span
                                 >
                             </v-alert>
                             <v-alert prominent color="warning" icon="mdi-alert" v-if="userResume.visibility === 'private'">
                                 <span class="subheading font-weight-medium"
-                                    >Your resume is hidden, <i>i.e.</i> visitors will NOT be able to find you without prior knowledge of your resume identifier. To gain access to your resume, visitors
-                                    either need to ask for your authorization, or they will be prompted to enter the password you specify below.</span
+                                    >Your resume is hidden, <i>i.e.</i> visitors will NOT be able to find you on the website. To gain access to your resume, visitors <u>will be</u> prompted to enter the password you specify below. (Recommanded for maximum privacy).</span
                                 >
                             </v-alert>
                         </v-row>
@@ -458,7 +457,7 @@
                         <v-row no-gutters justify="center" v-if="userResume.visibility != 'public'" style="margin-top: 20px">
                             <v-col cols="12" class="text-center mb-2">
                                 <div>Provide password for visitors' access:</div>
-                                <small>(You will transmit this password to your guests for access)</small>
+                                <small>(You will have to transmit this password to your guests for access)</small>
                             </v-col>
                             <v-col cols="12" sm="6" class="mx-5">
                                 <ValidationProvider v-slot="{ errors }" vid="password" name="Password" :rules="rules.password">

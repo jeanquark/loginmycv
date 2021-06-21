@@ -36,13 +36,16 @@ const validationRulesServer = {
         maxlength: [512, 'server.max'],
     },
     password: {
-        minLength: [6, 'server.min'],
-        maxlength: [64, 'server.max']
+        // minLength: [6, 'server.min'],
+        maxlength: [64, 'server.max'],
+        required: function() {
+            return this.slug.length < 1
+        }
     },
-    visitor_password: {
-        minLength: [6, 'server.min'],
-        maxlength: [64, 'server.max']
-    },
+    // visitor_password: {
+    //     minLength: [6, 'server.min'],
+    //     maxlength: [64, 'server.max']
+    // },
     user: {
         required: [true, 'server.required']
     },

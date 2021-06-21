@@ -3,8 +3,8 @@
         <p></p>
         <h2>File uploads</h2>
         <!-- userResume: {{ userResume }}<br /><br /> -->
-        userResume.uploads: {{ userResume.uploads }}<br /><br />
-        userResumeFiles: {{ userResumeFiles }}<br /><br />
+        <!-- userResume.uploads: {{ userResume.uploads }}<br /><br /> -->
+        <!-- userResumeFiles: {{ userResumeFiles }}<br /><br /> -->
         <!-- files: {{ files }}<br /><br /> -->
         <!-- currentFiles: {{ currentFiles }}<br /><br /> -->
         <!-- abc: {{ abc }}<br /><br /> -->
@@ -24,7 +24,7 @@
                     </v-card-title>
 
                     <v-card-text>
-                        <ValidationProvider v-slot="{ errors }" :vid="`uploads.${index}.title`" name="title" :rules="rules.upload.title">
+                        <ValidationProvider v-slot="{ errors }" :vid="`uploads.${index}.title`" name="title" :rules="rules ? rules.upload.title : null">
                             file.status: {{ file.status }}<br />
                             index: {{ index }}
                             <v-text-field
@@ -34,7 +34,7 @@
                                 placeholder="eg. My CV, Letter for X, etc."
                                 prepend-icon="mdi-format-title"
                                 data-vv-as="File title"
-                                :counter="rules.upload.title.max"
+                                :counter="rules ? rules.upload.title.max : null"
                                 v-model="userResumeFiles[index].title"
                                 v-if="file.status != 'to_be_removed_from_db'"
                             ></v-text-field>
@@ -90,7 +90,7 @@ export default {
     props: ['errors', 'rules', 'step', 'fileUploadErrors'],
     async created() {
         try {
-            const index = this.userResume.uploads.findIndex((upload) => upload.status === 'new')
+            const index = this.userResume?.uploads?.findIndex((upload) => upload.status === 'new')
             if (index > -1) {
                 this.userResume.uploads.splice(index, 1)
             }

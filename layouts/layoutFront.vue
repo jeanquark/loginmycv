@@ -87,7 +87,7 @@
                 </v-row>
                 <br /><br /><br /><br />
                 <Snackbars></Snackbars>
-                <!-- snackbars: {{ snackbars }}<br /> -->
+                snackbars: {{ snackbars }}<br />
                 <!-- <v-snackbar
                     :color="snackbar.color"
                     :timeout="-1"

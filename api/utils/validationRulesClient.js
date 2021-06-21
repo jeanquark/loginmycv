@@ -41,10 +41,10 @@ const validationRulesClient = {
         max: 64,
         confirmed: 'password_confirmation'
     },
-    visitor_password: {
-        min: 6,
-        max: 64
-    },
+    // visitor_password: {
+    //     min: 6,
+    //     max: 64
+    // },
     // password_confirmation: {
     //     // min: 6,
     //     // max: 64,

@@ -128,7 +128,7 @@
                     <v-alert color="error" type="error" prominent text class="my-3" v-for="error in uploadResumeImageErrors" :key="error">{{ error }}</v-alert>
                     <v-alert type="success" prominent text class="my-3" v-for="success in uploadResumeImageSuccess" :key="success">{{ success }}</v-alert>
 
-                    <!-- Uploading files -->  
+                    <!-- Uploading files -->
                     <v-alert color="error" type="error" prominent text class="my-3" v-for="error in uploadResumeFileErrors" :key="error">{{ error }}</v-alert>
                     <v-alert type="success" prominent text class="my-3" v-for="success in uploadResumeFileSuccess" :key="success">{{ success }}</v-alert>
 
@@ -139,7 +139,7 @@
 
                     <div class="text-center my-3 pt-2" v-if="updateResumeDataProgress">
                         <v-progress-linear indeterminate height="15" color="primary"></v-progress-linear>
-                        <p class="mt-2">Updating resume...</p>
+                        <p class="mt-2">Updating resume data...</p>
                     </div>
                     <div class="text-center my-3 pt-2" v-if="uploadResumeImageLoading">
                         <v-progress-linear indeterminate height="15" color="secondary"></v-progress-linear>
@@ -150,7 +150,14 @@
                         <p class="mt-2">Uploading files...</p>
                     </div>
 
-                    <v-row no-gutters justify="center" class="mt-4">
+                    <v-row no-gutters justify="center" v-if="!updateResumeProgress">
+                        <v-progress-circular :rotate="-90" :size="100" :width="15" :value="countdown" color="primary">
+                            {{ Math.ceil(countdown/10) }}
+                        </v-progress-circular>
+                    </v-row>
+
+                    <v-row no-gutters justify="center" class="mt-4" v-if="!updateResumeProgress">
+                        <v-btn text color="success" @click.stop="$router.push('/candidate/resumes')">OK</v-btn>
                         <v-btn text color="secondary" @click.stop="updatingResumeDialog = false">Close</v-btn>
                     </v-row>
                 </v-card-text>
@@ -162,7 +169,7 @@
 <script>
 import validationRulesClient from '@/api/utils/validationRulesClient'
 import TemplateComponent from '~/components/resume/TemplateComponent'
-const delay = ms => new Promise(res => setTimeout(res, ms))
+const delay = (ms) => new Promise((res) => setTimeout(res, ms))
 
 export default {
     name: 'CandidateUpdateResume',
@@ -173,7 +180,7 @@ export default {
         EducationComponent: () => import('~/components/resume/EducationComponent'),
         WorkExperienceComponent: () => import('~/components/resume/WorkExperienceComponent'),
         SkillsComponent: () => import('~/components/resume/SkillsComponent'),
-        FileUploadsComponent: () => import('~/components/resume/FileUploadsComponent')
+        FileUploadsComponent: () => import('~/components/resume/FileUploadsComponent'),
     },
     layout: 'layoutCandidate',
     // middleware: [],
@@ -190,12 +197,18 @@ export default {
         this.$store.commit('files/CLEAR_UPLOAD_FILE_STATUS')
         this.$store.commit('SET_LOADING', false, { root: true })
     },
+    beforeDestroy() {
+        clearInterval(this.interval)
+    },
     async mounted() {},
     data() {
         return {
             step: 1,
             rules: null,
+            countdown: 100,
+            interval: {},
             updatingResumeDialog: false,
+            updateResumeProgress: false,
             updateResumeDataProgress: false,
             updateResumeDataError: false,
             updateResumeDataSuccess: false,
@@ -204,7 +217,7 @@ export default {
             errorsStepEducation: false,
             errorsStepWorkExperience: false,
             errorsStepSkills: false,
-            errorsStepFilesUpload: false
+            errorsStepFilesUpload: false,
         }
     },
     computed: {
@@ -218,7 +231,7 @@ export default {
             return this.$store.getters['resumes/userResumes']
         },
         userResume() {
-            return this.$store.getters['resumes/userResumes'].find(resume => resume.slug === this.$route.params.slug)
+            return this.$store.getters['resumes/userResumes'].find((resume) => resume.slug === this.$route.params.slug)
         },
         uploadResumeImageLoading() {
             return this.$store.getters['images/uploadImageLoading']
@@ -237,7 +250,7 @@ export default {
         },
         uploadResumeFileErrors() {
             return this.$store.getters['files/uploadFileErrors']
-        }
+        },
     },
     methods: {
         moveOneStepForward() {
@@ -262,7 +275,7 @@ export default {
             this.errorsStepWorkExperience = false
             this.errorsStepSkills = false
             this.errorsStepFilesUpload = false
-            Object.keys(errors).forEach(item => {
+            Object.keys(errors).forEach((item) => {
                 console.log('item from checkStepsErrors: ', item)
 
                 // Step template
@@ -284,7 +297,7 @@ export default {
                     'personal_data.email',
                     'personal_data.website',
                     'personal_data.phone_number',
-                    'personal_data.city'
+                    'personal_data.city',
                 ]
                 if (inputs.includes(item) && errors[item].length > 0) {
                     console.log('Personal data errors: ', item)
@@ -316,7 +329,7 @@ export default {
                     this.updateResume()
                 } else {
                     this.checkStepsErrors(this.$refs.form.errors)
-                    this.$notifier.showMessage({ content: 'Please check validation errors', color: 'errors' })
+                    // this.$notifier.showMessage({ content: 'Please check validation errors', color: 'errors' })
                 }
             } catch (error) {
                 console.log('error: ', error)
@@ -325,15 +338,21 @@ export default {
         async updateResume() {
             try {
                 console.log('updateResume')
+                this.updateResumeProgress = true
                 await this.updateResumeData()
                 await this.uploadResumeImages()
                 await this.uploadResumeFiles()
+                this.updateResumeProgress = false
+                this.interval = setInterval(() => {
+                    if (this.countdown === 0) {
+                        return this.$router.push('/candidate/resumes')
+                    }
+                    this.countdown -= 10
+                }, 1000)
                 await this.$store.dispatch('resumes/fetchUserResumes')
-                this.$store.dispatch('setSnackbar', { show: true, text: 'Resume updated successfully!', color: 'success' })
-                // this.$router.push('/candidate/resumes')
             } catch (error) {
                 console.log('error from updateResume: ', error)
-                // this.$store.dispatch('setSnackbar', { show: true, text: 'Resume could not be updated.', color: 'error' })
+                this.updateResumeProgress = false
             }
         },
         async updateResumeData() {
@@ -341,6 +360,7 @@ export default {
                 console.log('updateResumeData')
                 this.updateResumeDataProgress = true
                 this.updateResumeDataSuccess = false
+                this.updateResumeDataError = false
                 console.log('userResume.uploads: ', this.userResume.uploads)
                 // throw new Error('error')
                 await this.$store.dispatch('resumes/updateResumeData', this.userResume)
@@ -354,11 +374,11 @@ export default {
 
                 // Display server-side errors
                 console.log('Object.keys(error.response.data.error): ', Object.keys(error.response.data.error))
-                Object.keys(error.response.data.error).forEach(item => {
+                Object.keys(error.response.data.error).forEach((item) => {
                     console.log('item: ', item)
                     if (isNaN(item)) {
                         this.$refs.form.setErrors({
-                            [item]: this.$i18n.t(`validation.${error.response.data.error[item]}`)
+                            [item]: this.$i18n.t(`validation.${error.response.data.error[item]}`),
                         })
                     }
                 })
@@ -370,13 +390,12 @@ export default {
             try {
                 console.log('uploadResumeImages: ', this.userResume.uploads)
                 this.$store.commit('images/CLEAR_UPLOAD_IMAGE_STATUS')
-                const images = this.userResume.uploads.filter(upload => upload.type === 'image')
+                const images = this.userResume.uploads.filter((upload) => upload.type === 'image')
                 console.log('images: ', images)
 
                 if (images.length < 1) {
                     return
                 }
-                this.$store.commit('images/SET_UPLOAD_IMAGE_LOADING', true)
 
                 // return
                 for (let i = 0; i < images.length; i++) {
@@ -384,6 +403,7 @@ export default {
                     if (images[i].status === 'to_be_saved_on_disc') {
                         try {
                             console.log('to_be_saved_on_disc')
+                            this.$store.commit('images/SET_UPLOAD_IMAGE_LOADING', true)
                             const formData = new FormData()
                             formData.append('file', images[i].file)
                             await this.$store.dispatch('images/uploadImage', { uploadImage: formData })
@@ -416,7 +436,7 @@ export default {
                 console.log('Now update DB!')
                 console.log('userResume.uploads: ', this.userResume.uploads)
                 // await this.$store.dispatch('resumes/updateResumeImages', images)
-                await delay(2000)
+                // await delay(2000)
                 this.$store.commit('images/SET_UPLOAD_IMAGE_LOADING', false)
                 // this.uploadResumeImagesProgress = false
                 // this.uploadResumeImagesSuccess = true
@@ -437,11 +457,13 @@ export default {
             try {
                 console.log('uploadResumeFile')
                 this.$store.commit('files/CLEAR_UPLOAD_FILE_STATUS')
-                // this.uploadResumeFilesProgress = true
-                this.$store.commit('files/SET_UPLOAD_FILE_LOADING', true)
-                const files = this.userResume.uploads.filter(upload => upload.type === 'file')
+                const files = this.userResume.uploads.filter((upload) => upload.type === 'file')
                 console.log('files: ', files)
-
+                if (files.length < 1) {
+                    return
+                }
+                
+                
                 // 1) Group all files with similar name in order to account for potential disk operation failures. In such a case, do not update DB.
                 let filesObject = {}
                 for (let i = 0; i < files.length; i++) {
@@ -463,6 +485,7 @@ export default {
                     for (let i = 0; i < files.length; i++) {
                         if (files[i].status === 'to_be_saved_on_disc') {
                             try {
+                                this.$store.commit('files/SET_UPLOAD_FILE_LOADING', true)
                                 console.log('to_be_saved_on_disc')
                                 const formData = new FormData()
                                 formData.append('file', files[i].file)
@@ -494,9 +517,9 @@ export default {
                     }
                 }
 
-                console.log('Now update DB!')
-                console.log('userResume.uploads: ', this.userResume.uploads)
-                await delay(2000)
+                // console.log('Now update DB!')
+                // console.log('userResume.uploads: ', this.userResume.uploads)
+                // await delay(2000)
                 this.$store.commit('files/SET_UPLOAD_FILE_LOADING', false)
             } catch (error) {
                 console.log('error: ', error)
@@ -506,16 +529,20 @@ export default {
         },
         validateResume() {
             this.$validator.validateAll()
-        }
+        },
     },
     watch: {
         steps(val) {
             if (this.e1 > val) {
                 this.e1 = val
             }
-        }
-    }
+        },
+    },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-progress-circular {
+    margin: 1rem;
+}
+</style>
