@@ -49,6 +49,7 @@ router.put('/resetpassword/:resettoken', resetPassword);
 router.route('/user-update')
     .put(authUser, updateUser);
 
+// Test route for refresh token. This needs to be precised.
 router.post('/refreshtoken', refreshToken);
 
 module.exports = router;

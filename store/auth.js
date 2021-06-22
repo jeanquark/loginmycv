@@ -161,6 +161,8 @@ export const actions = {
             throw error
         }
     },
+
+    // Test function. Can be deleted.
     async refreshToken ({ getters }) {
         try {
             console.log('refreshToken')

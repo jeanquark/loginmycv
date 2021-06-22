@@ -577,6 +577,28 @@ ResumeSchema.pre('findOneAndUpdate', async function (next) {
     }
 
     if (this._update.password) {
+        if (this._update.password.length < 6) {
+            console.log('Password is too short!')
+            let err = new Error()
+            err.name = 'ValidationError'
+            err.errors = {
+                password: {
+                    message: 'server.min'
+                }
+            }
+            next(err)
+        }
+        if (this._update.password.length > 64) {
+            console.log('Password is too long!')
+            let err = new Error()
+            err.name = 'ValidationError'
+            err.errors = {
+                password: {
+                    message: 'server.max'
+                }
+            }
+            next(err)
+        }
         const salt = await bcrypt.genSalt(10)
         // this._update.password = await bcrypt.hash('secret', salt)
         this._update.password = await bcrypt.hash(this._update.password, salt)
