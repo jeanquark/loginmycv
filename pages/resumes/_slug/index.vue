@@ -34,7 +34,7 @@ export default {
 
             return (this.component = () => import(`~/components/templatesModels/${this.resume.template.file}`))
         } catch (error) {
-            // console.log('error: ', error)
+            console.log('error: ', error)
             // console.log('error.response: ', error.response)
             // console.log('error.response.status: ', error.response.status)
             // console.log('error.response.data: ', error.response.data)

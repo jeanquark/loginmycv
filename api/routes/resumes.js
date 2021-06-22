@@ -18,7 +18,7 @@ const {
     uploadResumeFiles,
     getUserImages,
     getUserFiles,
-    getResumeFile,
+    // getResumeFile,
     resetResumeCounter,
     resetUploadsCounter,
     // getFile,
@@ -49,7 +49,7 @@ router.route('/images/remove').post(authUser, removeResumeImage)
 
 // Routes to interact with files
 router.route('/files').get(authUser, getUserFiles)
-router.route('/file').post(getResumeFile)
+// router.route('/file').post(getResumeFile)
 router.route('/files/add').post(authUser, addResumeFile)
 router.route('/files').put(authUser, updateResumeFiles)
 // router.route('/files/:fileName').delete(authUser, deleteResumeFile)
@@ -63,8 +63,6 @@ router.route('/slug/:slug').get(authResume, getResumeBySlug)
 
 router.route('/:id/reset-resume-counter').get(authUser, resetResumeCounter)
 router.route('/:id/reset-uploads-counter').get(authUser, resetUploadsCounter)
-
-
 
 router
     .route('/:id')

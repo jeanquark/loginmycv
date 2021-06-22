@@ -63,9 +63,17 @@
                                 <v-card-text class="" style="max-width: 380px">
                                     <h3 class="headline mb-0 text-center text-truncate">{{ resume.job_title }}</h3>
                                     <div class="pt-1 px-2 text-center">{{ resume.job_description }}</div>
-                                    <div class="pt-1 px-2 text-center">Visibility: {{ resume.visibility }}</div>
-                                    Identifier:
-                                    <p class="text-center text-truncate">{{ resume.slug }}</p>
+                                    <div class="text-center my-2">
+                                        <p class="text-truncate">{{ resume.slug }}</p>
+                                    </div>
+                                    <div class="text-center my-2">
+                                        <v-chip :color="chipColor(resume.visibility)" class="">{{ resume.visibility }}</v-chip>
+                                    </div>
+                                    <div class="text-center my-2">
+                                        Last updated 
+                                        {{ resume.updated_at | moment('from', 'now') }}
+                                    </div>
+                                    
                                     <br />
                                     Created: {{ resume.created_at }}<br />
                                     Last update: {{ resume.updated_at }}<br />
@@ -265,6 +273,18 @@ export default {
         // convertToPdf(resumeSlug) {
         //     console.log('convertToPdf: ', resumeSlug)
         // },
+        chipColor(visibility) {
+            switch (visibility) {
+                case 'public':
+                    return 'success'
+                case 'semi-private':
+                    return 'info'
+                case 'private':
+                    return 'warning'
+                default:
+                    return 'primary'
+            }
+        },
         updateName($event, resumeId) {
             // console.log('updateName: ', $event, resumeId)
             this.newResumeNameMap.set(resumeId, $event)

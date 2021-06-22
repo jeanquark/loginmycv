@@ -6,6 +6,7 @@ const User = require('../models/User')
 const Resume = require('../models/Resume')
 const Authorization = require('../models/Authorization')
 const jsonwebtoken = require('jsonwebtoken')
+const mongoose = require('mongoose')
 
 // @desc      Register user
 // @route     POST /api/v1/auth/register
@@ -143,7 +144,7 @@ exports.loginResume = asyncHandler(async (req, res, next) => {
 
     // Check for resume
     const resume = await Resume.findOne({ slug }).select('+password')
-    console.log('resume: ', resume)
+    // console.log('[auth controller] @loginResume resume: ', resume)
 
     if (!resume) {
         return next(new ErrorResponse('server.invalid_credentials', 401))
@@ -471,6 +472,27 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 
     sendTokenResponseUser(user, 200, res)
 })
+
+// Essai
+// @desc      Refresh token
+// @route     POST /api/v1/auth/refreshtoken
+// @access    Public
+exports.refreshToken = asyncHandler(async (req, res, next) => {
+    console.log('[auth controller] @refreshToken req.body: ', req.body)
+    const user = req.body.user
+
+    // const abc = jwt.sign({ id: this._id }, process.env.JWT_SECRET_USER, {
+    //     expiresIn: process.env.JWT_EXPIRE_USER
+    // })
+    // const token = user.getSignedJwtToken()
+    // console.log('token: ', token)
+    const user2 = {
+        _id: mongoose.Types.ObjectId('5e66fc1a45545051d93387a6')
+    }
+    console.log('user2: ', user2)
+    sendTokenResponseUser(user2, 200, res)
+})
+
 
 // Get token from model, create cookie and send response
 const sendTokenResponseUser = (user, statusCode, res) => {

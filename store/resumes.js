@@ -23,7 +23,7 @@ export const mutations = {
         // state.activities[index] = payload
     },
     SET_USER_RESUMES(state, payload) {
-        console.log('SET_USER_RESUMES mutation: ', payload)
+        // console.log('SET_USER_RESUMES mutation: ', payload)
         state.userResumes = payload
     },
     // SET_NEW_RESUME2(state, payload) {

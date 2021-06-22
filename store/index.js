@@ -54,6 +54,9 @@ export const mutations = {
         console.log('CLOSE_REQUEST_AUTHORIZATION_MODAL')
         state.requestAuthorizationModal = false
     },
+    CLEAR_SNACKBAR(state) {
+        state.snackbars = []
+    },
     SET_SNACKBAR(state, payload) {
         console.log('SET_SNACKBAR: ', payload)
         state.snackbars = state.snackbars.concat(payload)
@@ -122,6 +125,8 @@ export const actions = {
     },
     async setSnackbar({ commit }, payload) {
         console.log('setSnackbar payload: ', payload)
+        commit('CLEAR_SNACKBAR')
+
         payload.show = payload.show || true
         payload.text = payload.text || ''
         payload.color = payload.color || 'info'

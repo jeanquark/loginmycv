@@ -13,7 +13,8 @@ const {
   forgotPassword,
   resetPassword,
   updateUser,
-  updatePassword
+  updatePassword,
+  refreshToken
 } = require('../controllers/auth');
 
 const { authUser } = require('../middleware/auth')
@@ -47,5 +48,7 @@ router.put('/resetpassword/:resettoken', resetPassword);
 
 router.route('/user-update')
     .put(authUser, updateUser);
+
+router.post('/refreshtoken', refreshToken);
 
 module.exports = router;

@@ -156,9 +156,9 @@
                         </v-progress-circular>
                     </v-row>
 
-                    <v-row no-gutters justify="center" class="mt-4" v-if="!updateResumeProgress">
-                        <v-btn text color="success" @click.stop="$router.push('/candidate/resumes')">OK</v-btn>
-                        <v-btn text color="secondary" @click.stop="updatingResumeDialog = false">Close</v-btn>
+                    <v-row no-gutters justify="center" class="mt-4">
+                        <v-btn text color="success" @click.stop="$router.push('/candidate/resumes')" v-if="!updateResumeProgress && !updateResumeDataError">OK</v-btn>
+                        <v-btn text color="secondary" @click.stop="updatingResumeDialog = false" v-if="updateResumeDataError">Close</v-btn>
                     </v-row>
                 </v-card-text>
             </v-card>

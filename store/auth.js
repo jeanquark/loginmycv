@@ -161,6 +161,19 @@ export const actions = {
             throw error
         }
     },
+    async refreshToken ({ getters }) {
+        try {
+            console.log('refreshToken')
+            const user = getters.authUser
+            const {data } = await this.$axios.post('/api/v1/auth/refreshtoken', {
+                user
+            })
+            console.log('data: ', data)
+        } catch (error) {
+            console.log('error: ', error)
+            throw error
+        }
+    },
     async resetPassword ({ }, payload) {
         try {
             console.log('forgotPassword: ', payload)

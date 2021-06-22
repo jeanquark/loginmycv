@@ -45,6 +45,7 @@
 
                 <Snackbars></Snackbars>
                 snackbars: {{ snackbars }}<br />
+                <v-btn small color="primary" @click="refreshToken">Refresh token</v-btn>
                 <Confirm ref="confirm"></Confirm>
             </v-container>
         </v-main>
@@ -125,6 +126,9 @@ export default {
             } else {
                 this.$vuetify.theme.dark = true
             }
+        },
+        refreshToken () {
+            this.$store.dispatch('auth/refreshToken')
         },
         async logoutUser() {
             console.log('logoutUser')

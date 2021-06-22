@@ -124,12 +124,14 @@ exports.getUserResumes = asyncHandler(async (req, res, next) => {
     // return next(new ErrorResponse(`No resume found for user ${req.user.id}`, 404))
 
     const resumes = await Resume.find({ user: req.user.id })
+        // .select('+password')
         .populate('user')
         .populate('template')
         .populate('personal_data.country')
         .populate('personal_data.nationalities')
     // const resume = req.userResume
     // console.log('resumes.uploads: ', resumes[1]['uploads'])
+    console.log('[resumes controller] @getUserResumes resumes: ', resumes)
 
     if (!resumes) {
         return next(new ErrorResponse(`No resume found for user ${req.user.id}`, 404))
@@ -217,21 +219,21 @@ exports.getUserFiles = asyncHandler(async (req, res, next) => {
 // @desc      Get user file
 // @route     POST /api/v1/resumes/file
 // @access    Private
-exports.getResumeFile = asyncHandler(async (req, res, next) => {
-    console.log('[resumes controller] @getResumeFile req.params: ', req.params)
-    console.log('[resumes controller] @getResumeFile req.body: ', req.body)
-    console.log('[resumes controller] @getResumeFile req.headers.accept: ', req.headers.accept)
-    // return next(new ErrorResponse(`Resume file could not be retrieved`, 404))
-    const { fileName, fileId, resumeId, resumeUserId, authUserId } = req.body
-    // const { resumeId, fileId } = req.params
-    // console.log('resumeId: ', resumeId)
-    // console.log('fileId: ', fileId)
+// exports.getResumeFile = asyncHandler(async (req, res, next) => {
+//     console.log('[resumes controller] @getResumeFile req.params: ', req.params)
+//     console.log('[resumes controller] @getResumeFile req.body: ', req.body)
+//     console.log('[resumes controller] @getResumeFile req.headers.accept: ', req.headers.accept)
+//     // return next(new ErrorResponse(`Resume file could not be retrieved`, 404))
+//     const { fileName, fileId, resumeId, resumeUserId, authUserId } = req.body
+//     // const { resumeId, fileId } = req.params
+//     // console.log('resumeId: ', resumeId)
+//     // console.log('fileId: ', fileId)
 
-    // 1) Initialize s3
+//     // 1) Initialize s3
     
 
-    res.send()
-})
+//     res.send()
+// })
 
 // @desc      Create new resume
 // @route     POST /api/v1/resumes

@@ -308,7 +308,6 @@ const ResumeSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            // required: [true, 'server.required'],
             select: false,
             ...validationRulesServer.password
         },
@@ -523,11 +522,16 @@ ResumeSchema.pre('save', async function (next) {
     // this.visitor_password = await bcrypt.hash(this.visitor_password, salt)
 })
 
+
+ResumeSchema.pre('update', async function(next) {
+    console.log('pre update')
+})
+
 // Encrypt updated visitor password using bcrypt
-ResumeSchema.pre('findOneAndUpdate', async function (resume, next) {
+ResumeSchema.pre('findOneAndUpdate', async function (next) {
     console.log('pre findOneAndUpdate _update.visibility: ', this._update.visibility)
     console.log('pre findOneAndUpdate _update.password: ', this._update.password)
-    console.log('pre findOneAndUpdate resume.password: ', resume.password)
+    console.log('pre findOneAndUpdate resume.password: ')
 
     // if (!this.isModified('password')) {
     //     next()
@@ -535,39 +539,41 @@ ResumeSchema.pre('findOneAndUpdate', async function (resume, next) {
 
     // Making sure a password is provided for private or semi-private resumes
     if (this._update.visibility !== 'public') {
-        if (!this._update.password) {
-            console.log('A password is required!')
-            let err = new Error()
-            err.name = 'ValidationError'
-            err.errors = {
-                password: {
-                    message: 'server.required'
-                }
-            }
-            next(err)
-        }
-        if (this._update.password.length < 6) {
-            console.log('Password is too short!')
-            let err = new Error()
-            err.name = 'ValidationError'
-            err.errors = {
-                password: {
-                    message: 'server.min'
-                }
-            }
-            next(err)
-        }
-        if (this._update.password.length > 64) {
-            console.log('Password is too long!')
-            let err = new Error()
-            err.name = 'ValidationError'
-            err.errors = {
-                password: {
-                    message: 'server.max'
-                }
-            }
-            next(err)
-        }
+        // if (!this._update.password) {
+        //     console.log('A password is required!')
+        //     let err = new Error()
+        //     err.name = 'ValidationError'
+        //     err.errors = {
+        //         password: {
+        //             message: 'server.required'
+        //         }
+        //     }
+        //     next(err)
+        // }
+        // if (this._update.password.length < 6) {
+        //     console.log('Password is too short!')
+        //     let err = new Error()
+        //     err.name = 'ValidationError'
+        //     err.errors = {
+        //         password: {
+        //             message: 'server.min'
+        //         }
+        //     }
+        //     next(err)
+        // }
+        // if (this._update.password.length > 64) {
+        //     console.log('Password is too long!')
+        //     let err = new Error()
+        //     err.name = 'ValidationError'
+        //     err.errors = {
+        //         password: {
+        //             message: 'server.max'
+        //         }
+        //     }
+        //     next(err)
+        // }
+    } else {
+        this._update.password = ''
     }
 
     if (this._update.password) {
