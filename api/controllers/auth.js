@@ -96,12 +96,12 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     console.log('[auth controllers]  @loginUser')
     const { email, password } = req.body
 
-    // Validate email & password
+    // 1) Validate email & password
     if (!email || !password) {
         return next(new ErrorResponse('Please provide an email and password', 400))
     }
 
-    // Check for user
+    // 2) Check for user
     const user = await User.findOne({ email })
         // .populate('resumes')
         .populate('authorizations')
@@ -120,12 +120,25 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     //     }
     // ]
 
-    // Check if password matches
+    // 3) Check if password matches
     const isMatch = await user.matchPassword(password)
 
     if (!isMatch) {
         return next(new ErrorResponse('server.invalid_credentials', 401))
     }
+
+    // 4) Update refresh token
+    console.log('process.env.JWT_REFRESH_TOKEN_EXPIRE_USER: ', process.env.JWT_REFRESH_TOKEN_EXPIRE_USER)
+    user.refreshToken = '1234'
+    let expiredAt = new Date()
+    console.log('expiredAt: ', expiredAt)
+    expiredAt.setSeconds(
+        expiredAt.getSeconds() + (process.env.JWT_REFRESH_TOKEN_EXPIRE_USER || 3600 * 24 * 14)
+        // expiredAt.getSeconds() + 3600 * 24 * 14
+    )
+    // console.log('expiredAt: ', expiredAt.getTime())
+    user.refreshTokenExpire = expiredAt.getTime()
+    await user.save()
 
     sendTokenResponseUser(user, 200, res)
 })
@@ -387,13 +400,13 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     if (!user) {
         return next(new ErrorResponse('server.user_does_not_exist', 404))
     }
-    
+
     // Get reset token
     const resetToken = user.getResetPasswordToken()
     console.log('resetToken: ', resetToken)
-    
+
     await user.save({ validateBeforeSave: false })
-    
+
     // Create reset url
     const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/auth/resetpassword/${resetToken}`
     console.log('resetUrl: ', resetUrl)
@@ -479,18 +492,26 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 // @access    Public
 exports.refreshToken = asyncHandler(async (req, res, next) => {
     console.log('[auth controller] @refreshToken req.body: ', req.body)
-    const user = req.body.user
+    const userId = req.body.user.id
+    console.log('[auth controller] @refreshToken userId: ', userId)
 
+    // let newAccessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET_USER, {
+    //     expiresIn: process.env.JWT_EXPIRE_USER,
+    // });
+    // console.log('[auth controller] @refreshToken newAccessToken: ', newAccessToken)
+
+    const user = await User.findById(userId)
+    console.log('[auth controller] @refreshToken user: ', user)
     // const abc = jwt.sign({ id: this._id }, process.env.JWT_SECRET_USER, {
     //     expiresIn: process.env.JWT_EXPIRE_USER
     // })
     // const token = user.getSignedJwtToken()
     // console.log('token: ', token)
-    const user2 = {
-        _id: mongoose.Types.ObjectId('5e66fc1a45545051d93387a6')
-    }
-    console.log('user2: ', user2)
-    sendTokenResponseUser(user2, 200, res)
+    // const user2 = {
+    //     _id: mongoose.Types.ObjectId('5e66fc1a45545051d93387a6')
+    // }
+    // console.log('user2: ', user2)
+    sendTokenResponseUser(user, 200, res)
 })
 
 
@@ -499,14 +520,13 @@ const sendTokenResponseUser = (user, statusCode, res) => {
     console.log('[auth controller] @sendTokenResponseUser user: ', user)
     console.log('[auth controller] @sendTokenResponseUser process.env.JWT_COOKIE_EXPIRE_USER: ', process.env.JWT_COOKIE_EXPIRE_USER)
     console.log('[auth controller] @sendTokenResponseUser process.env.NODE_ENV: ', process.env.NODE_ENV)
-    
-    // Create token
+
+    // 1) Create token
     const token = user.getSignedJwtToken()
     console.log('token: ', token)
     if (user.password) {
         user.password = undefined
     }
-    // console.log('user2: ', user)
 
     const options = {
         // expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 24 * 60 * 60 * 1000),
@@ -530,7 +550,7 @@ const sendTokenResponseUser = (user, statusCode, res) => {
 const sendTokenResponseResume = (resume, statusCode, res) => {
     // Create token
     const token = resume.getSignedJwtToken()
-    console.log('token from controller: ', token)
+    console.log('[auth controller] @senTokenResponseResume token: ', token)
 
     if (resume.password) {
         resume.password = undefined

@@ -119,7 +119,7 @@ exports.getResumeBySlug = asyncHandler(async (req, res, next) => {
 exports.getUserResumes = asyncHandler(async (req, res, next) => {
     // console.log('[resumes controller] @getUserResumes req.params.id: ', req.params.id)
     // console.log('[resumes controller] @getUserResumes req.authUser: ', req.authUser)
-    console.log('[resumes controller] @getUserResumes req.user: ', req.user)
+    // console.log('[resumes controller] @getUserResumes req.user: ', req.user)
     console.log('[resumes controller] @getUserResumes req.user.id: ', req.user.id)
     // return next(new ErrorResponse(`No resume found for user ${req.user.id}`, 404))
 
@@ -131,7 +131,7 @@ exports.getUserResumes = asyncHandler(async (req, res, next) => {
         .populate('personal_data.nationalities')
     // const resume = req.userResume
     // console.log('resumes.uploads: ', resumes[1]['uploads'])
-    console.log('[resumes controller] @getUserResumes resumes: ', resumes)
+    // console.log('[resumes controller] @getUserResumes resumes: ', resumes)
 
     if (!resumes) {
         return next(new ErrorResponse(`No resume found for user ${req.user.id}`, 404))

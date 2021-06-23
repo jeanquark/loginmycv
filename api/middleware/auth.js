@@ -14,7 +14,6 @@ exports.authUser = asyncHandler(async (req, res, next) => {
         const decoded = jwt.verify(tokenUser, process.env.JWT_SECRET_USER)
         console.log('[authUser middleware] decoded: ', decoded)
         const user = await User.findById(decoded.id).populate('package', 'name slug total_space_in_bytes')
-        // const user = await User.findOne({ _id: decoded.id }).populate('package')
         console.log('[authUser middleware] user: ', user)
         req.user = user
         next()

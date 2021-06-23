@@ -128,7 +128,7 @@ import Avatar from 'vue-avatar'
 import RequestAuthorizationModal from '~/components/RequestAuthorizationModal'
 import fileDownload from 'js-file-download' // Download data file
 export default {
-    name: 'Homepage',
+    name: 'Index',
     components: { Avatar, RequestAuthorizationModal },
     layout: 'layoutFront',
     async created() {
