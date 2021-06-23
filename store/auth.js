@@ -166,9 +166,9 @@ export const actions = {
     async refreshToken ({ getters }) {
         try {
             console.log('refreshToken')
-            const user = getters.authUser
+            const { refreshToken } = getters.authUser
             const {data } = await this.$axios.post('/api/v1/auth/refreshtoken', {
-                user
+                refreshToken
             })
             console.log('data: ', data)
         } catch (error) {

@@ -84,7 +84,6 @@ export const actions = {
             if (tokenUser && tokenUser !== 'none') {
                 const decoded = jwt.verify(tokenUser, process.env.JWT_SECRET_USER)
                 console.log('[nuxtServerInit] tokenUser decoded: ', decoded)
-
                 await dispatch('getUserById', decoded.id)
             }
 
@@ -94,7 +93,6 @@ export const actions = {
             if (tokenResume && tokenResume !== 'none') {
                 const decoded = jwt.verify(tokenResume, process.env.JWT_SECRET_RESUME)
                 console.log('[nuxtServerInit] tokenResume decoded: ', decoded)
-
                 await dispatch('getResumeById', decoded.id)
             }
 

@@ -163,7 +163,7 @@ export const actions = {
     },
     async fetchUserImages({ commit }) {
         try {
-            console.log('fetchUserImages')
+            console.log('[VUEX] fetchUserImages')
             const { data } = await this.$axios.$get(`/api/v1/resumes/user-images`)
             console.log('fetchUserImages data: ', data)
             return data
@@ -174,7 +174,7 @@ export const actions = {
     },
     async fetchUserFiles({}) {
         try {
-            console.log('fetchUserFiles')
+            console.log('[VUEX] fetchUserFiles')
             const { data } = await this.$axios.$get(`/api/v1/resumes/files`)
             console.log('data: ', data)
             return data
@@ -232,7 +232,7 @@ export const actions = {
     },
     async updateResumeData({ commit }, payload) {
         try {
-            console.log('updateResume: ', payload)
+            console.log('[VUEX] updateResume: ', payload)
 
             // Update resume data
             commit('SET_LOADING_UPDATE_RESUME', true, { root: true })
@@ -250,7 +250,7 @@ export const actions = {
     },
     async updateResumeImages({}, payload) {
         try {
-            console.log('updateResumeImages: ', payload)
+            console.log('[VUEX] updateResumeImages: ', payload)
             const data = await this.$axios.$put(`/api/v1/resumes/images`, payload)
             console.log('[VUEX] resume/updateResumeImages data: : ', data)
         } catch (error) {
@@ -294,17 +294,6 @@ export const actions = {
             console.log('error: ', error)
         }
     },
-    // async TOBEDELETED_uploadResumeProfilePicture({ commit }, payload) {
-    //     try {
-    //         const { resumeId, upload } = payload
-    //         console.log('upload: ', upload)
-    //         await this.$axios.$post(`/api/v1/resumes/${resumeId}/upload-resume-profile-picture`, upload)
-    //         // await this.$axios.$post(`/api/v1/resumes/${resumeId}/upload-resume-profile-picture`, { upload, deleteOldProfilePicture })
-    //     } catch (error) {
-    //         console.log('error: ', error)
-    //         throw error
-    //     }
-    // },
     async uploadResumeFiles2({ commit }, payload) {
         try {
             // Upload resume files (jpeg, png & pdf)
@@ -346,7 +335,7 @@ export const actions = {
     // },
     async resetResumeCounter({ commit }, payload) {
         try {
-            console.log('resetResumeCounter: ', payload)
+            console.log('[VUEX] resetResumeCounter: ', payload)
             const { resumeId } = payload
             const { data } = await this.$axios.$get(`/api/v1/resumes/${resumeId}/reset-resume-counter`)
             console.log('data: ', data)

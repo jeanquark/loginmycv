@@ -7,6 +7,7 @@ const Resume = require('../models/Resume')
 const Authorization = require('../models/Authorization')
 const jsonwebtoken = require('jsonwebtoken')
 const mongoose = require('mongoose')
+const { v4: uuidv4 } = require('uuid');
 
 // @desc      Register user
 // @route     POST /api/v1/auth/register
@@ -129,14 +130,12 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 
     // 4) Update refresh token
     console.log('process.env.JWT_REFRESH_TOKEN_EXPIRE_USER: ', process.env.JWT_REFRESH_TOKEN_EXPIRE_USER)
-    user.refreshToken = '1234'
+    user.refreshToken = uuidv4()
     let expiredAt = new Date()
     console.log('expiredAt: ', expiredAt)
     expiredAt.setSeconds(
         expiredAt.getSeconds() + (process.env.JWT_REFRESH_TOKEN_EXPIRE_USER || 3600 * 24 * 14)
-        // expiredAt.getSeconds() + 3600 * 24 * 14
     )
-    // console.log('expiredAt: ', expiredAt.getTime())
     user.refreshTokenExpire = expiredAt.getTime()
     await user.save()
 
@@ -491,17 +490,30 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/auth/refreshtoken
 // @access    Public
 exports.refreshToken = asyncHandler(async (req, res, next) => {
-    console.log('[auth controller] @refreshToken req.body: ', req.body)
-    const userId = req.body.user.id
-    console.log('[auth controller] @refreshToken userId: ', userId)
+    // console.log('[auth controller] @refreshToken req.body: ', req.body)
+    // const userId = req.body.user.id
+    // console.log('[auth controller] @refreshToken userId: ', userId)
+    const { refreshToken } = req.body
+    console.log('[auth controller] @refreshToken refreshToken: ', refreshToken)
 
     // let newAccessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET_USER, {
     //     expiresIn: process.env.JWT_EXPIRE_USER,
     // });
     // console.log('[auth controller] @refreshToken newAccessToken: ', newAccessToken)
 
-    const user = await User.findById(userId)
+    // const user = await User.findById(userId)
+
+    // 1) Find token
+    const user = await User.findOne({
+        refreshToken
+    })
+    if (!user) {
+
+    }
     console.log('[auth controller] @refreshToken user: ', user)
+    
+    // 2) Is refresh token still valid?
+    
     // const abc = jwt.sign({ id: this._id }, process.env.JWT_SECRET_USER, {
     //     expiresIn: process.env.JWT_EXPIRE_USER
     // })

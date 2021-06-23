@@ -128,6 +128,7 @@ export default {
             }
         },
         refreshToken () {
+            // console.log('authUser: ', this.authUser)
             this.$store.dispatch('auth/refreshToken')
         },
         async logoutUser() {
