@@ -162,8 +162,7 @@ export const actions = {
         }
     },
 
-    // Test function. Can be deleted.
-    async refreshToken ({ getters }) {
+    async refreshToken ({ dispatch, getters }) {
         try {
             console.log('refreshToken')
             const { refreshToken } = getters.authUser
@@ -171,8 +170,10 @@ export const actions = {
                 refreshToken
             })
             console.log('data: ', data)
+            dispatch('setSnackbar', { show: true, text: 'Your session was successfully refreshed!', color: 'success', timeout: 5000, top: true, right: true } ,{ root: true })
         } catch (error) {
             console.log('error: ', error)
+            dispatch('setSnackbar', { show: true, text: 'An error occured and your session could not be refreshed. Please sign in again.', color: 'error', timeout: 8000, top: true, right: true } ,{ root: true })
             throw error
         }
     },

@@ -86,8 +86,10 @@
                     </v-dialog>
                 </v-row>
                 <br /><br /><br /><br />
+                <!-- <Snackbars>Click <v-btn small color="primary">here</v-btn></Snackbars> -->
                 <Snackbars></Snackbars>
                 snackbars: {{ snackbars }}<br />
+                <!-- <v-btn color="primary" @click="refreshToken">Refresh token</v-btn> -->
                 <!-- <v-snackbar
                     :color="snackbar.color"
                     :timeout="-1"
@@ -217,6 +219,9 @@ export default {
         },
     },
     methods: {
+        // refreshToken () {
+        //     this.$store.dispatch('setSnackbar', { show: true, showRefreshTokenButton: true, color: 'error', timeout: 5000, top: true, right: true })
+        // },
         switchToLogin() {
             this.registerModal = false
             this.$store.commit('OPEN_LOGIN_MODAL')

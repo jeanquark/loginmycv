@@ -134,7 +134,8 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     let expiredAt = new Date()
     console.log('expiredAt: ', expiredAt)
     expiredAt.setSeconds(
-        expiredAt.getSeconds() + (process.env.JWT_REFRESH_TOKEN_EXPIRE_USER || 3600 * 24 * 14)
+        // expiredAt.getSeconds() + (process.env.JWT_REFRESH_TOKEN_EXPIRE_USER || 3600 * 24 * 14)
+        expiredAt.getSeconds() + process.env.JWT_REFRESH_TOKEN_EXPIRE_USER
     )
     user.refreshTokenExpire = expiredAt.getTime()
     await user.save()
@@ -508,11 +509,21 @@ exports.refreshToken = asyncHandler(async (req, res, next) => {
         refreshToken
     })
     if (!user) {
-
+        return res.status(404).send({ message: "User Not found." })
     }
     console.log('[auth controller] @refreshToken user: ', user)
     
     // 2) Is refresh token still valid?
+    if (user.refreshTokenExpire.getTime() < new Date().getTime()) {
+        return res.status(403).json({
+            message: "Refresh token was expired. Please make a new signin request.",
+        })
+    }
+
+    // 3) Remove refresh token from DB
+    user.refreshToken = null
+    user.refreshTokenExpire = null
+    user.save()
     
     // const abc = jwt.sign({ id: this._id }, process.env.JWT_SECRET_USER, {
     //     expiresIn: process.env.JWT_EXPIRE_USER

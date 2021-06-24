@@ -129,7 +129,8 @@ export default {
         },
         refreshToken () {
             // console.log('authUser: ', this.authUser)
-            this.$store.dispatch('auth/refreshToken')
+            // this.$store.dispatch('auth/refreshToken')
+            this.$store.dispatch('setSnackbar', { show: true, showRefreshTokenButton: true, color: 'error', timeout: 5000, top: true, right: true })
         },
         async logoutUser() {
             console.log('logoutUser')

@@ -87,8 +87,8 @@ export default function({ $axios, store, redirect }) {
                 case 401:
                     const authUser = store.state.auth.authUser
                     console.log('[axios plugins] authUser: ', authUser)
-                    if (authUser) {
-                        store.dispatch('setSnackbar', { show: true, text: 'Your session has expired. Click <button>here</button> to refresh it.', color: 'error', timeout: 5000, top: true, right: true })
+                    if (authUser && authUser.refreshToken) {
+                        store.dispatch('setSnackbar', { show: true, showRefreshTokenButton: true, color: 'error', timeout: 8000, top: true, right: true })
                     } else {
                         store.dispatch('setSnackbar', { show: true, text: 'Authorization error. You\'re missing the required authorization to process the request.', color: 'error', timeout: 5000, top: true, right: true })
                     }
