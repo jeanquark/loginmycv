@@ -150,7 +150,7 @@
                         <p class="mt-2">Uploading files...</p>
                     </div>
 
-                    <v-row no-gutters justify="center" v-if="!updateResumeProgress">
+                    <v-row no-gutters justify="center" v-if="!updateResumeProgress && !updateResumeDataError">
                         <v-progress-circular :rotate="-90" :size="100" :width="15" :value="countdown" color="primary">
                             {{ Math.ceil(countdown/10) }}
                         </v-progress-circular>
@@ -375,7 +375,7 @@ export default {
                 // Display server-side errors
                 console.log('Object.keys(error.response.data.error): ', Object.keys(error.response.data.error))
                 Object.keys(error.response.data.error).forEach((item) => {
-                    console.log('item: ', item)
+                    // console.log('item: ', item)
                     if (isNaN(item)) {
                         this.$refs.form.setErrors({
                             [item]: this.$i18n.t(`validation.${error.response.data.error[item]}`),

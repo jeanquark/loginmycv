@@ -45,7 +45,6 @@
 
                 <Snackbars></Snackbars>
                 snackbars: {{ snackbars }}<br />
-                <v-btn small color="primary" @click="refreshToken">Refresh token</v-btn>
                 <Confirm ref="confirm"></Confirm>
             </v-container>
         </v-main>

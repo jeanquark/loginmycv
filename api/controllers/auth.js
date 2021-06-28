@@ -129,13 +129,13 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     }
 
     // 4) Update refresh token
-    console.log('process.env.JWT_REFRESH_TOKEN_EXPIRE_USER: ', process.env.JWT_REFRESH_TOKEN_EXPIRE_USER)
+    console.log('process.env.JWT_COOKIE_EXPIRE_USER_REFRESH_TOKEN: ', process.env.JWT_COOKIE_EXPIRE_USER_REFRESH_TOKEN)
     user.refreshToken = uuidv4()
     let expiredAt = new Date()
     console.log('expiredAt: ', expiredAt)
     expiredAt.setSeconds(
         // expiredAt.getSeconds() + (process.env.JWT_REFRESH_TOKEN_EXPIRE_USER || 3600 * 24 * 14)
-        expiredAt.getSeconds() + process.env.JWT_REFRESH_TOKEN_EXPIRE_USER
+        expiredAt.getSeconds() + process.env.JWT_COOKIE_EXPIRE_USER_REFRESH_TOKEN
     )
     user.refreshTokenExpire = expiredAt.getTime()
     await user.save()
@@ -525,22 +525,14 @@ exports.refreshToken = asyncHandler(async (req, res, next) => {
     user.refreshTokenExpire = null
     user.save()
     
-    // const abc = jwt.sign({ id: this._id }, process.env.JWT_SECRET_USER, {
-    //     expiresIn: process.env.JWT_EXPIRE_USER
-    // })
-    // const token = user.getSignedJwtToken()
-    // console.log('token: ', token)
-    // const user2 = {
-    //     _id: mongoose.Types.ObjectId('5e66fc1a45545051d93387a6')
-    // }
-    // console.log('user2: ', user2)
-    sendTokenResponseUser(user, 200, res)
+    sendTokenResponseUser(user, 200, res, true)
 })
 
 
 // Get token from model, create cookie and send response
-const sendTokenResponseUser = (user, statusCode, res) => {
+const sendTokenResponseUser = (user, statusCode, res, refreshToken) => {
     console.log('[auth controller] @sendTokenResponseUser user: ', user)
+    console.log('[auth controller] @sendTokenResponseUser refreshToken: ', refreshToken)
     console.log('[auth controller] @sendTokenResponseUser process.env.JWT_COOKIE_EXPIRE_USER: ', process.env.JWT_COOKIE_EXPIRE_USER)
     console.log('[auth controller] @sendTokenResponseUser process.env.NODE_ENV: ', process.env.NODE_ENV)
 
@@ -552,8 +544,8 @@ const sendTokenResponseUser = (user, statusCode, res) => {
     }
 
     const options = {
-        // expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 24 * 60 * 60 * 1000),
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 1000),
+        expires: refreshToken ? new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER_REFRESH_TOKEN * 1000) : new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 1000),
+        // expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_USER * 1000),
         httpOnly: true
     }
 

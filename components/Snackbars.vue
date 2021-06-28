@@ -3,7 +3,7 @@
         <v-snackbar :top="snackbar.top" :right="snackbar.right" :color="snackbar.color" :timeout="snackbar.timeout" v-for="(snackbar, index) in snackbars.filter((s) => s.show)" :key="index" :style="`bottom: ${index * 55 + 5}px`" v-model="snackbar.show">
             <div v-html="snackbar.text"></div>
             <div v-if="snackbar.showRefreshTokenButton">
-                Your session has expired. Click <v-btn x-small color="primary" @click="refreshToken(index)">here</v-btn> to refresh it.
+                Your session has expired. Click <v-btn x-small color="primary" @click="refreshToken(index)">here</v-btn> to refresh it. Please note that you can only refresh your session once. If it expires a second time, you'll have to sign in again.
             </div>
             <!-- <span v-html="snackbar.html"></span> -->
             <!-- {{ snackbar.html }} -->
