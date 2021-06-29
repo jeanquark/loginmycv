@@ -405,7 +405,7 @@
 
                         <v-row no-gutters class="mt-10" style="">
                             <v-col cols="12" class="">
-                                <profile-picture-upload :resumeSlug="resumeSlug"></profile-picture-upload>
+                                <profile-picture-upload :resumeSlug="resumeSlug" @imageVerifying="onImageVerifying"></profile-picture-upload>
                             </v-col>
                         </v-row>
                     </v-card-text>
@@ -674,10 +674,12 @@ export default {
         //         return null
         //     }
         // }
+        
     },
     methods: {
-        abc() {
-            console.log('abc')
+        onImageVerifying (value) {
+            console.log('[PersonalDataComponent] onImageVerifying: ', value)
+            this.$emit('imageVerifying', value)
         },
         fetchCountries() {
             console.log('fetchCountries')

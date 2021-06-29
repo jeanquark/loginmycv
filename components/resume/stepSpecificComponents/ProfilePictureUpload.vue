@@ -38,18 +38,17 @@
                 <v-chip small color="secondary" class="mb-2" v-if="newProfilePicture"
                     >New picture
                     <v-icon small right color="success" v-if="verifiedImage">mdi-check</v-icon>
-                    <font-awesome-icon :icon="['fas', 'spinner']" size="1x" spin class="ml-2" v-else />
-                    </v-chip
+                    <font-awesome-icon :icon="['fas', 'spinner']" size="1x" spin class="ml-2" v-else /> </v-chip
                 ><br />
                 <v-row no-gutters justify="center">
                     <!-- {{ newProfilePicture }} -->
                     <!-- <img :src="`/images/users/${authUser.id}/${newProfilePicture.name}`" height="150" v-if="newProfilePicture" /> -->
                     <img :src="newProfilePicture" height="150" id="newPicture" class="mb-2" />
-                    <span v-if="analyzingImage">Analyzing your image <font-awesome-icon :icon="['fas', 'spinner']" size="1x" spin class="ml-2" /></span>
+                    <span v-if="analyzingImage">Analyzing your image <font-awesome-icon :icon="['fas', 'spinner']" size="1x" spin class="ml-1" /></span>
                     <!-- <span v-if="verifiedImage">Image verified!</span> -->
                 </v-row>
                 <v-row no-gutters justify="center" class="my-2">
-                    <v-chip x-small color="success" v-if="verifiedImage">Image verified!</v-chip>
+                    <v-chip x-small color="success" v-if="newProfilePicture && verifiedImage">Image verified!</v-chip>
                 </v-row>
                 <v-row no-gutters justify="center" v-if="newProfilePicture">
                     <v-btn small color="error" @click="removeNewProfilePicture">Cancel</v-btn>
@@ -74,7 +73,7 @@
 </template>
 
 <script>
-// import * as nsfwjs from 'nsfwjs'
+import * as nsfwjs from 'nsfwjs'
 const delay = (ms) => new Promise((res) => setTimeout(res, ms))
 
 export default {
@@ -112,8 +111,6 @@ export default {
             if (this.$route.params.slug) {
                 return this.$store.getters['resumes/userResumes'].find((resume) => resume.slug === this.$route.params.slug)
             } else {
-                // return this.$store.getters['resumesModels/resumesModels'][0]
-                // return this.$store.getters['resumes/userResume']
                 return this.$store.getters['resumes/userResumes'].find((resume) => resume.status === 'new')
             }
         },
@@ -132,22 +129,25 @@ export default {
                         this.newProfilePicture = fileReader.result
                     })
 
-                    // console.log('Analyzing your image...')
-                    // this.analyzingImage = true
-                    // this.verifiedImage = false
-                    // const img = document.getElementById('newPicture')
-                    // const model = await nsfwjs.load()
-                    // const predictions = await model.classify(img, 5)
-                    // console.log('predictions: ', predictions)
+                    console.log('Analyzing your image...')
+                    this.analyzingImage = true
+                    this.verifiedImage = false
+                    const img = document.getElementById('newPicture')
+                    this.$emit('imageVerifying', true)
+                    const model = await nsfwjs.load()
+                    const predictions = await model.classify(img, 5)
+                    await delay(3000)
+                    console.log('predictions: ', predictions)
 
-                    // if (predictions[0].className === 'Neutral' || predictions[0].className === 'Drawing') {
-                    //     await delay(2000)
-                    //     console.log('Ok, continue!')
-                    //     this.analyzingImage = false
-                    //     this.verifiedImage = true
-                    // } else {
-                    //     throw new Error('Not a valid image!')
-                    // }
+                    if (predictions[0].className === 'Neutral' || predictions[0].className === 'Drawing') {
+                        await delay(2000)
+                        console.log('Ok, continue!')
+                        this.analyzingImage = false
+                        this.verifiedImage = true
+                        this.$emit('imageVerifying', false)
+                    } else {
+                        throw new Error('Not a valid image!')
+                    }
 
                     // 1) Add new profile picture
                     const profilePictureIndex = this.userResume.uploads.findIndex((upload) => upload.category === 'profile_picture')

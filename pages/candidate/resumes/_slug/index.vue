@@ -4,7 +4,8 @@
             <v-col cols="12">
                 <h2 class="text-center">Edit resume {{ $route.params.slug }}</h2>
                 step: {{ step }}<br />
-                loading: {{ loading }}
+                loading: {{ loading }}<br />
+                imageVerifying: {{ imageVerifying }}
                 <br />
             </v-col>
         </v-row>
@@ -66,7 +67,7 @@
                                     <v-stepper-content :step="2">
                                         <v-card class="mb-8">
                                             <!-- <personal-data-component :errors="[]" :rules="rules" v-if="!loading" /> -->
-                                            <personal-data-component :errors="errors" :rules="rules" v-if="!loading" />
+                                            <personal-data-component :errors="errors" :rules="rules" @imageVerifying="onImageVerifying" v-if="!loading" />
                                         </v-card>
                                     </v-stepper-content>
 
@@ -100,8 +101,7 @@
                                     <v-btn small color="primary" @click.stop="moveOneStepForward"> Next <v-icon>mdi-arrow-right</v-icon> </v-btn>
                                 </v-card-actions>
                                 <v-row no-gutters justify="center" class="my-2">
-                                    <v-btn class="success" type="submit" :loading="updatingResumeDialog">Update Resume</v-btn><br /><br />
-                                    <!-- <v-btn class="success" @click="uploadResumeFiles">Upload Files</v-btn> -->
+                                    <v-btn class="success" type="submit" :loading="updatingResumeDialog || imageVerifying">Update Resume</v-btn><br /><br />
                                 </v-row>
                             </v-stepper>
                         </v-form>
@@ -207,6 +207,7 @@ export default {
             rules: null,
             countdown: 100,
             interval: {},
+            imageVerifying: false,
             updatingResumeDialog: false,
             updateResumeProgress: false,
             updateResumeDataProgress: false,
@@ -253,6 +254,10 @@ export default {
         },
     },
     methods: {
+        onImageVerifying (value) {
+            console.log('[index] onImageVerifying: ', value)
+            this.imageVerifying = value
+        },
         moveOneStepForward() {
             if (this.step < 7) {
                 this.step += 1
